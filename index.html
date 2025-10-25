@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fatema AL Waisi - Artiste Peintre</title>
     
-    <!-- ✅ AJOUTE CETTE LIGNE ICI -->
+    <!-- ✅ Base URL pour GitHub Pages -->
     <base href="/portfolio/">
 
     <!-- Polices Google Fonts -->
@@ -21,8 +21,9 @@
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/arabic-fonts.css">
+    <!-- ✅ CORRIGÉ : Sans / au début -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/arabic-fonts.css">
 </head>
 <body>
     <!-- HEADER (chargé dynamiquement) -->
@@ -35,7 +36,8 @@
             <div class="container hero-content">
                 <h1 class="hero-title" data-translate="hero_title">Bienvenue dans mon univers artistique</h1>
                 <p class="hero-subtitle" data-translate="hero_subtitle">Explorez mes créations en peinture sur verre, gravure sur étain et techniques mixtes</p>
-                <a href="/galerie.html" class="btn-primary" data-translate="hero_cta">Découvrir mes œuvres</a>
+                <!-- ✅ CORRIGÉ : Sans / au début -->
+                <a href="galerie.html" class="btn-primary" data-translate="hero_cta">Découvrir mes œuvres</a>
             </div>
         </section>
 
@@ -45,7 +47,8 @@
                 <h2 class="section-title" data-translate="video_title">Une œuvre prend vie</h2>
                 <div class="video-container">
                     <video id="process-video" loop muted playsinline>
-                        <source src="/videos/creation-process.mp4" type="video/mp4">
+                        <!-- ✅ CORRIGÉ : Sans / au début -->
+                        <source src="videos/creation-process.mp4" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture de vidéos.
                     </video>
                     <div class="video-overlay">
@@ -68,6 +71,7 @@
     <div id="footer-placeholder"></div>
 
     <!-- SCRIPTS -->
-    <script src="/js/main.js"></script>
+    <!-- ✅ CORRIGÉ : Sans / au début -->
+    <script src="js/main.js"></script>
 </body>
 </html>
