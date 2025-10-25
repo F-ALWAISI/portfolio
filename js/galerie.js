@@ -272,7 +272,7 @@ const artworks = {
 };
 
 // ===== IMPORTS =====
-import { artworks } from '.js/data/artworks.js';
+import { artworks } from './data/artworks.js';
 
 // ===== CONFIGURATION DEBUG =====
 const DEBUG_MODE = false; // ✅ Mettre à true pour activer les logs de développement
@@ -992,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
