@@ -269,7 +269,7 @@ const artworks = {
 // ═══════════════════════════════════════════════════
 
 // ===== IMPORTS =====
-import artworks from './data/artworks.js';
+import artworks from './artworks.js';
 
 console.log('🎨 Galerie.js chargé');
 console.log('✅ Artworks importées:', artworks);
@@ -952,6 +952,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== RENDRE LES FONCTIONS GLOBALES =====
 window.changeLanguage = changeLanguage;
 window.toggleLanguageMenu = toggleLanguageMenu;
+
 
 
 
