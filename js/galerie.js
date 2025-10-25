@@ -308,14 +308,9 @@ function generateGallery() {
     devLog('🎨 Génération galerie, filtre:', currentFilter);
     container.innerHTML = '';
 
-    // Transformer l'objet artworks en tableau plat
-    const allArtworks = [];
-    for (const [category, works] of Object.entries(artworks)) {
-        works.forEach(artwork => {
-            allArtworks.push({ ...artwork, category });
-        });
-    }
-
+    // ✅ CORRECTION : Transformer l'objet artworks directement
+    const allArtworks = Object.values(artworks);
+    
     devLog('✅ Total œuvres disponibles:', allArtworks.length);
 
     // Filtrer selon le filtre actif
@@ -333,7 +328,10 @@ function generateGallery() {
 
     // Générer les cartes
     filteredArtworks.forEach((artwork, index) => {
-        const title = artwork.title[currentLanguage] || artwork.title.fr;
+        // ✅ CORRECTION : Gérer titre string ou objet
+        const title = typeof artwork.title === 'object' 
+            ? (artwork.title[currentLanguage] || artwork.title.fr)
+            : artwork.title;
         
         const card = document.createElement('div');
         card.className = 'gallery-card';
@@ -946,6 +944,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== RENDRE LES FONCTIONS GLOBALES =====
 window.changeLanguage = changeLanguage;
 window.toggleLanguageMenu = toggleLanguageMenu;
+
 
 
 
