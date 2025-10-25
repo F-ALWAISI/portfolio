@@ -143,25 +143,20 @@ async function loadIncludes() {
     devLog('🔄 Chargement des includes...');
 
     try {
+        // ✅ CORRIGÉ : Sans / au début
         // Charger le header
-        const headerResponse = await fetch('/includes/header.html');
+        const headerResponse = await fetch('includes/header.html');
         if (!headerResponse.ok) throw new Error('Header non trouvé');
         const headerHTML = await headerResponse.text();
         document.getElementById('header-placeholder').innerHTML = headerHTML;
         devLog('✅ Header chargé');
 
-        // Charger le sélecteur de langue dans le header
-        const langResponse = await fetch('/includes/language-selector.html');
-        if (!langResponse.ok) throw new Error('Language selector non trouvé');
-        const langHTML = await langResponse.text();
-        const langPlaceholder = document.getElementById('language-selector-placeholder');
-        if (langPlaceholder) {
-            langPlaceholder.innerHTML = langHTML;
-            devLog('✅ Sélecteur de langue chargé');
-        }
+        // ❌ SUPPRIMÉ : language-selector.html n'existe plus (intégré dans header)
+        // Le sélecteur de langue est maintenant directement dans header.html
 
+        // ✅ CORRIGÉ : Sans / au début
         // Charger le footer
-        const footerResponse = await fetch('/includes/footer.html');
+        const footerResponse = await fetch('includes/footer.html');
         if (!footerResponse.ok) throw new Error('Footer non trouvé');
         const footerHTML = await footerResponse.text();
         document.getElementById('footer-placeholder').innerHTML = footerHTML;
@@ -181,12 +176,11 @@ async function loadIncludes() {
             <div style="padding: 2rem; text-align: center; color: red;">
                 <h1>❌ Erreur de chargement</h1>
                 <p>${error.message}</p>
-                <p>Vérifiez que vous utilisez un serveur local (Live Server)</p>
+                <p>Vérifiez que le site est bien déployé sur GitHub Pages</p>
             </div>
         `;
     }
 }
-
 
 // ===== SYSTÈME DE TRADUCTION =====
 function initLanguageSystem() {
@@ -343,9 +337,9 @@ function translateElements(lang) {
 function updateLanguageButton(lang) {
     // Chemins vers les SVG
     const flags = { 
-        fr: '/assets/flags/fr.svg', 
-        en: '/assets/flags/gb.svg', 
-        ar: '/assets/flags/sa.svg' 
+        fr: 'flags/fr.svg', 
+        en: 'flags/gb.svg', 
+        ar: 'flags/sa.svg' 
     };
 
     const langCodes = { 
@@ -357,16 +351,11 @@ function updateLanguageButton(lang) {
     // Met à jour le bouton actuel (desktop)
     const currentLangBtn = document.querySelector('.current-language');
     if (currentLangBtn) {
-        const flagElement = currentLangBtn.querySelector('.flag, .flag-icon, #currentFlag');
-        const codeSpan = currentLangBtn.querySelector('.lang-code');
+        const flagElement = currentLangBtn.querySelector('.flag, #currentFlag');
+        const codeSpan = currentLangBtn.querySelector('.lang-code, #currentLangCode');
 
         if (flagElement) {
-            if (flagElement.tagName === 'IMG') {
-                flagElement.src = flags[lang];
-            } else {
-                // Convertir span en image
-                flagElement.outerHTML = `<img src="${flags[lang]}" alt="" class="flag-icon" id="currentFlag">`;
-            }
+            flagElement.textContent = flags[lang];
         }
 
         if (codeSpan) {
@@ -385,14 +374,20 @@ function updateLanguageButton(lang) {
 // ===== MARQUER PAGE ACTIVE =====
 function highlightActiveNav() {
     const currentPath = window.location.pathname;
+    // ✅ CORRIGÉ : Gérer les chemins avec ou sans /
     const currentPage = currentPath.split('/').pop() || 'index.html';
 
     document.querySelectorAll('.nav-link').forEach(link => {
-        const linkPage = link.getAttribute('href').split('/').pop();
+        // ✅ CORRIGÉ : Extraire juste le nom du fichier
+        const linkHref = link.getAttribute('href');
+        const linkPage = linkHref.split('/').pop();
+        
         if (linkPage === currentPage) {
             link.classList.add('active');
         }
     });
+    
+    devLog(`✅ Page active: ${currentPage}`);
 }
 
 
@@ -447,5 +442,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     devLog('✅ Site prêt !');
 });
+
 
 
