@@ -268,12 +268,6 @@ const artworks = {
 // GALERIE.JS - Gestion complète de la galerie d'art
 // ═══════════════════════════════════════════════════
 
-// ===== IMPORTS =====
-import artworks from '.artworks.js';
-
-console.log('🎨 Galerie.js chargé');
-console.log('✅ Artworks importées:', artworks);
-
 // ===== CONFIGURATION DEBUG =====
 const DEBUG_MODE = true;
 
@@ -952,6 +946,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== RENDRE LES FONCTIONS GLOBALES =====
 window.changeLanguage = changeLanguage;
 window.toggleLanguageMenu = toggleLanguageMenu;
+
 
 
 
