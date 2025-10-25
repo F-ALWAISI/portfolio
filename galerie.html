@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galerie - Fatema Artiste</title>
 
+
     <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,7 @@
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Styles -->
+    <!-- Styles (chemins uniformisés) -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/galerie.css">
     <link rel="stylesheet" href="css/arabic-fonts.css">
@@ -61,15 +62,15 @@
 
     <!-- ===== LIGHTBOX ===== -->
     <div id="lightbox" class="lightbox">
-        <!-- Boutons de contrôle -->
+        <!-- ✅ BOUTONS DE CONTRÔLE -->
         <button class="lightbox-close" aria-label="Fermer">×</button>
         <button class="lightbox-prev" aria-label="Précédent">‹</button>
         <button class="lightbox-next" aria-label="Suivant">›</button>
 
-        <!-- Compteur -->
+        <!-- ✅ COMPTEUR -->
         <div class="lightbox-counter">1 / 10</div>
 
-        <!-- Contenu principal -->
+        <!-- ✅ CONTENU PRINCIPAL -->
         <div class="lightbox-content">
             <!-- Image principale -->
             <img id="lightbox-image" class="lightbox-image" src="" alt="">
@@ -80,7 +81,7 @@
                 <p id="lightbox-details" class="lightbox-details"></p>
                 <p id="lightbox-description" class="lightbox-description"></p>
 
-                <!-- Bouton contact -->
+                <!-- ✅ BOUTON CONTACT -->
                 <button id="lightbox-contact-btn" class="lightbox-contact-btn">
                     <span class="btn-icon">📧</span>
                     <span class="btn-text" data-translate="lightbox_contact_btn">Demander un devis</span>
@@ -93,9 +94,43 @@
     <div id="footer-placeholder"></div>
 
     <!-- ===== SCRIPTS ===== -->
-    <!-- Script principal (charge translations.js, main.js, galerie.js automatiquement) -->
-    <script src="js/main.js"></script>
-    <script type="module" src="js/galerie.js"></script>
+<script type="module" src="js/galerie.js"></script>
+
+    <!-- Inclusion Header/Footer -->
+    <script>
+        // Charger le header
+        fetch('includes/header.html')
+            .then(res => res.text())
+            .then(html => {
+                const headerPlaceholder = document.getElementById('header-placeholder');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = html;
+
+                    // Charger le sélecteur de langue
+                    return fetch('includes/language-selector.html');
+                }
+            })
+            .then(res => res ? res.text() : null)
+            .then(langHtml => {
+                if (langHtml) {
+                    const langPlaceholder = document.getElementById('language-selector-placeholder');
+                    if (langPlaceholder) {
+                        langPlaceholder.innerHTML = langHtml;
+                    }
+                }
+            })
+            .catch(err => console.error('❌ Erreur header:', err));
+
+        // Charger le footer
+        fetch('includes/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                const footerPlaceholder = document.getElementById('footer-placeholder');
+                if (footerPlaceholder) {
+                    footerPlaceholder.innerHTML = html;
+                }
+            })
+            .catch(err => console.error('❌ Erreur footer:', err));
+    </script>
 </body>
 </html>
-
