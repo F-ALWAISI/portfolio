@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expositions | Hadjira Jaber</title>
+
+     <!-- Base URL pour GitHub Pages -->
+    <base href="/portfolio/">
+
+ <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Polices latines -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Polices arabes élégantes -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/expositions.css">
+        <link rel="stylesheet" href="/css/arabic-fonts.css">
+</head>
+<body>
+    <!-- Header (même que galerie) -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="expo-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-translate="expo_hero_title">Parcours Artistique</h1>
+                <p class="hero-subtitle" data-translate="expo_hero_subtitle">
+                    Une décennie d'expositions et d'événements marquants
+                </p>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"></div>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label" data-translate="stat_exhibitions">Expositions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"></div>
+                    <div class="stat-number">3</div>
+                    <div class="stat-label" data-translate="stat_cities">Villes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"></div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label" data-translate="stat_visitors">Visiteurs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"></div>
+                    <div class="stat-number">43</div>
+                    <div class="stat-label" data-translate="stat_artworks">Œuvres exposées</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="expo-filters">
+        <div class="container">
+            <div class="filters-wrapper">
+                <button class="filter-btn active" data-filter="all">
+                    <span data-translate="filter_all">Toutes</span>
+                </button>
+                <button class="filter-btn" data-filter="upcoming">
+                    <span data-translate="filter_upcoming">À venir</span>
+                </button>
+                <button class="filter-btn" data-filter="solo">
+                    <span data-translate="filter_solo">Solo</span>
+                </button>
+                <button class="filter-btn" data-filter="collective">
+                    <span data-translate="filter_collective">Collectives</span>
+                </button>
+                <button class="filter-btn" data-filter="special">
+                    <span data-translate="filter_special">Événements</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="expo-timeline">
+        <div class="container">
+            <div class="timeline-wrapper" id="timeline-container">
+                <!-- Les expositions seront injectées ici par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/expositions-data.js"></script>
+    <script src="js/expositions.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
