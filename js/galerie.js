@@ -112,9 +112,9 @@ artist_title: "Artist & Creator",
 
 // ===== DONNÉES DES LANGUES (AVEC CHEMINS SVG) =====
 const languageData = {
-    fr: { flag: '/assets/flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
-    en: { flag: '/assets/flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
-    ar: { flag: '/assets/flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
+    fr: { flag: 'flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
+    en: { flag: 'flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
+    ar: { flag: 'flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
 };
 
 // ===== DONNÉES DES ŒUVRES =====
@@ -271,14 +271,14 @@ const artworks = {
     },  
 };
 
-// ===== CONFIGURATION DEBUG =====
-const DEBUG_MODE = false; // ✅ Mettre à true pour activer les logs de développement
+// ===== IMPORTS =====
+import { artworks } from './artworks.js';
 
-// Fonction de log conditionnelle
+// ===== CONFIGURATION DEBUG =====
+const DEBUG_MODE = false; // Mettre à true pour activer les logs
+
 function devLog(...args) {
-    if (DEBUG_MODE) {
-        console.log(...args);
-    }
+    if (DEBUG_MODE) console.log(...args);
 }
 
 // ===== VARIABLES GLOBALES =====
@@ -286,6 +286,15 @@ let currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
 let currentFilter = 'all';
 let filteredArtworks = [];
 let currentArtworkIndex = 0;
+
+// ===== VARIABLES DE ZOOM =====
+let currentZoom = 1;
+let isDragging = false;
+let startX = 0, startY = 0, translateX = 0, translateY = 0;
+
+// =============================================
+// SECTION 1 : GALERIE
+// =============================================
 
 // ===== GÉNÉRATION GALERIE =====
 function generateGallery() {
@@ -319,7 +328,7 @@ function generateGallery() {
             </div>
             <div class="gallery-info">
                 <h3 class="gallery-title">${artwork.title}</h3>
-                <p class="gallery-dimensions"> ${artwork.dimensions}</p>
+                <p class="gallery-dimensions">${artwork.dimensions}</p>
             </div>
         `;
         card.addEventListener('click', () => openLightbox(index));
@@ -343,10 +352,9 @@ function initFilters() {
     });
 }
 
-// ===== VARIABLES DE ZOOM =====
-let currentZoom = 1;
-let isDragging = false;
-let startX, startY, translateX = 0, translateY = 0;
+// =============================================
+// SECTION 2 : LIGHTBOX
+// =============================================
 
 // ===== REDIRECTION VERS CONTACT =====
 function redirectToContact(artworkTitle) {
@@ -396,7 +404,7 @@ Thank you!`,
     const message = encodeURIComponent(messages[currentLang] || messages.fr);
     const subject = encodeURIComponent(subjects[currentLang] || subjects.fr);
 
-    window.location.href = `/contact.html?subject=${subject}&message=${message}`;
+    window.location.href = `contact.html?subject=${subject}&message=${message}`;
 }
 
 // ===== OUVRIR LA LIGHTBOX =====
@@ -406,26 +414,20 @@ function openLightbox(index) {
     currentArtworkIndex = index;
     const [key, artwork] = filteredArtworks[index];
 
-    devLog('📊 Artwork:', artwork);
-
     // Récupérer les éléments DOM
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxTitle = document.getElementById('lightbox-title');
-    const lightboxTechnique = document.getElementById('lightbox-technique');
     const lightboxDetails = document.getElementById('lightbox-details');
     const lightboxDescription = document.getElementById('lightbox-description');
     const lightboxCounter = document.querySelector('.lightbox-counter');
 
-    // 🔄 Réinitialiser le zoom
+    // Réinitialiser le zoom
     resetZoom();
 
     // Mettre à jour le contenu
     if (lightboxImage) {
         lightboxImage.src = artwork.image;
         lightboxImage.alt = artwork.title;
-        devLog('✅ Image chargée:', artwork.image);
-
-        // 🔍 Activer le zoom sur cette image
         initImageZoom(lightboxImage);
     }
 
@@ -434,15 +436,17 @@ function openLightbox(index) {
     if (lightboxDescription) lightboxDescription.textContent = artwork.description || '';
     if (lightboxCounter) lightboxCounter.textContent = `${index + 1} / ${filteredArtworks.length}`;
 
-    // ✅ GÉRER LE BOUTON CONTACT
+    // Gérer le bouton contact
     const contactBtn = document.getElementById('lightbox-contact-btn');
     if (contactBtn) {
-        contactBtn.onclick = (e) => {
+        contactBtn.replaceWith(contactBtn.cloneNode(true));
+        const newContactBtn = document.getElementById('lightbox-contact-btn');
+        
+        newContactBtn.onclick = (e) => {
             e.preventDefault();
-            devLog('📧 Redirection vers contact pour:', artwork.title);
+            e.stopPropagation();
             redirectToContact(artwork.title);
         };
-        devLog('✅ Bouton contact configuré pour:', artwork.title);
     }
 
     // Afficher la lightbox
@@ -450,46 +454,62 @@ function openLightbox(index) {
     if (lightbox) {
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
-        devLog('✅ Lightbox ouverte !');
-    } else {
-        console.error('❌ Lightbox non trouvée dans le DOM');
     }
 }
 
-// ===== INITIALISER LE ZOOM SUR L'IMAGE =====
+// ===== FERMER LA LIGHTBOX =====
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        resetZoom();
+    }
+}
+
+// ===== NAVIGATION LIGHTBOX =====
+function navigateLightbox(direction) {
+    resetZoom();
+
+    currentArtworkIndex += direction;
+
+    if (currentArtworkIndex < 0) {
+        currentArtworkIndex = filteredArtworks.length - 1;
+    } else if (currentArtworkIndex >= filteredArtworks.length) {
+        currentArtworkIndex = 0;
+    }
+
+    openLightbox(currentArtworkIndex);
+}
+
+// =============================================
+// SECTION 3 : SYSTÈME DE ZOOM
+// =============================================
+
+// ===== INITIALISER LE ZOOM =====
 function initImageZoom(image) {
     if (!image) return;
 
-    // 🔍 ZOOM AVEC LA MOLETTE
+    // ZOOM AVEC LA MOLETTE
     image.addEventListener('wheel', (e) => {
         e.preventDefault();
-
         const delta = e.deltaY > 0 ? -0.1 : 0.1;
-        currentZoom = Math.min(Math.max(1, currentZoom + delta), 4); // Zoom entre 1x et 4x
-
+        currentZoom = Math.min(Math.max(1, currentZoom + delta), 4);
         applyZoom(image);
-        devLog('🔍 Zoom:', currentZoom.toFixed(1) + 'x');
     }, { passive: false });
 
-    // 🖱️ DOUBLE-CLIC POUR ZOOM/DÉZOOM
+    // DOUBLE-CLIC POUR ZOOM/DÉZOOM
     image.addEventListener('dblclick', (e) => {
         e.preventDefault();
-
-        if (currentZoom === 1) {
-            currentZoom = 2; // Zoomer à 2x
-        } else {
-            resetZoom(); // Revenir à 1x
-        }
-
-        applyZoom(image);
+        currentZoom = currentZoom === 1 ? 2 : 1;
+        if (currentZoom === 1) resetZoom();
+        else applyZoom(image);
     });
 
-    // 🖐️ DRAG POUR DÉPLACER L'IMAGE ZOOMÉE
+    // DRAG POUR DÉPLACER
     image.addEventListener('mousedown', startDrag);
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('mouseup', stopDrag);
 
-    // 📱 SUPPORT TACTILE (mobile)
+    // SUPPORT TACTILE (pinch)
     let touchStartDistance = 0;
 
     image.addEventListener('touchstart', (e) => {
@@ -510,13 +530,10 @@ function initImageZoom(image) {
     }, { passive: false });
 }
 
-
 // ===== APPLIQUER LE ZOOM =====
 function applyZoom(image) {
     image.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
     image.style.cursor = currentZoom > 1 ? 'move' : 'zoom-in';
-
-    // Afficher un indicateur de zoom
     showZoomIndicator();
 }
 
@@ -536,22 +553,18 @@ function resetZoom() {
 // ===== DRAG DE L'IMAGE =====
 function startDrag(e) {
     if (currentZoom <= 1) return;
-
     isDragging = true;
     startX = e.clientX - translateX;
     startY = e.clientY - translateY;
-
     const image = document.getElementById('lightbox-image');
     if (image) image.style.cursor = 'grabbing';
 }
 
 function drag(e) {
     if (!isDragging || currentZoom <= 1) return;
-
     e.preventDefault();
     translateX = e.clientX - startX;
     translateY = e.clientY - startY;
-
     const image = document.getElementById('lightbox-image');
     if (image) {
         image.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
@@ -566,20 +579,37 @@ function stopDrag() {
     }
 }
 
-// ===== CALCULER LA DISTANCE ENTRE DEUX POINTS (pinch mobile) =====
+// Attacher les événements au document
+document.addEventListener('mousemove', drag);
+document.addEventListener('mouseup', stopDrag);
+
+// ===== CALCULER LA DISTANCE (pinch) =====
 function getDistance(touch1, touch2) {
     const dx = touch1.clientX - touch2.clientX;
     const dy = touch1.clientY - touch2.clientY;
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-// ===== AFFICHER UN INDICATEUR DE ZOOM =====
+// ===== INDICATEUR DE ZOOM =====
 function showZoomIndicator() {
     let indicator = document.querySelector('.zoom-indicator');
 
     if (!indicator) {
         indicator = document.createElement('div');
         indicator.className = 'zoom-indicator';
+        indicator.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 10001;
+            display: none;
+        `;
         document.body.appendChild(indicator);
     }
 
@@ -592,33 +622,10 @@ function showZoomIndicator() {
     }, 1000);
 }
 
-// ===== FERMER LA LIGHTBOX =====
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        resetZoom(); // Réinitialiser le zoom
-        devLog('❌ Lightbox fermée');
-    }
-}
+// =============================================
+// SECTION 4 : ÉVÉNEMENTS LIGHTBOX
+// =============================================
 
-// ===== NAVIGATION LIGHTBOX =====
-function navigateLightbox(direction) {
-    resetZoom(); // Réinitialiser le zoom lors de la navigation
-
-    currentArtworkIndex += direction;
-
-    if (currentArtworkIndex < 0) {
-        currentArtworkIndex = filteredArtworks.length - 1;
-    } else if (currentArtworkIndex >= filteredArtworks.length) {
-        currentArtworkIndex = 0;
-    }
-
-    openLightbox(currentArtworkIndex);
-}
-
-// ===== INITIALISER LA LIGHTBOX =====
 function initLightbox() {
     devLog('🎨 Initialisation de la lightbox...');
 
@@ -632,13 +639,13 @@ function initLightbox() {
         return;
     }
 
-    // ✅ FERMETURE
+    // FERMETURE
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeLightbox();
     });
 
-    // ✅ NAVIGATION
+    // NAVIGATION
     prevBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigateLightbox(-1);
@@ -649,9 +656,11 @@ function initLightbox() {
         navigateLightbox(1);
     });
 
-    // ✅ CLAVIER
+    // CLAVIER
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
+
+        const img = document.getElementById('lightbox-image');
 
         switch(e.key) {
             case 'Escape':
@@ -667,8 +676,6 @@ function initLightbox() {
                 break;
             case '+':
             case '=':
-                // Zoomer avec +
-                const img = document.getElementById('lightbox-image');
                 if (img) {
                     currentZoom = Math.min(4, currentZoom + 0.2);
                     applyZoom(img);
@@ -676,295 +683,32 @@ function initLightbox() {
                 break;
             case '-':
             case '_':
-                // Dézoomer avec -
-                const img2 = document.getElementById('lightbox-image');
-                if (img2) {
+                if (img) {
                     currentZoom = Math.max(1, currentZoom - 0.2);
-                    applyZoom(img2);
+                    applyZoom(img);
                 }
                 break;
             case '0':
-                // Réinitialiser avec 0
                 resetZoom();
                 break;
         }
     });
 
-    // ✅ CLIC SUR LE FOND
+    // CLIC SUR LE FOND
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox && currentZoom === 1) {
             closeLightbox();
         }
     });
 
-    devLog('✅ Lightbox initialisée avec zoom');
+    devLog('✅ Lightbox initialisée');
 }
-
-
-// ===== FONCTION DE TRADUCTION =====
-function translatePage(lang) {
-    devLog(`🌍 Traduction en cours: ${lang}`);
-
-    currentLanguage = lang;
-    localStorage.setItem('selectedLanguage', lang);
-
-    document.documentElement.setAttribute('lang', lang);
-    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.dataset.translate;
-        if (translations[lang] && translations[lang][key]) {
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                element.placeholder = translations[lang][key];
-            } else {
-                element.textContent = translations[lang][key];
-            }
-        }
-    });
-
-    devLog('✅ Traduction terminée');
-}
-
-// ===== FONCTION CHANGEMENT DE LANGUE =====
-function changeLanguage(lang) {
-    devLog(`🔄 Changement de langue vers: ${lang}`);
-
-    // 1. Traduire la page
-    translatePage(lang);
-
-    // 2. Mettre à jour le drapeau IMMÉDIATEMENT
-    updateCurrentLanguage(lang);
-
-    // 3. Mettre à jour les options actives
-    updateLanguageOptions(lang);
-
-    // 4. Fermer le menu
-    closeLanguageMenu();
-
-    devLog(`✅ Langue changée en ${lang}`);
-}
-
-// ===== METTRE À JOUR LE DRAPEAU =====
-function updateCurrentLanguage(lang) {
-    devLog(`🏳️ Mise à jour du drapeau pour: ${lang}`);
-
-    const currentFlag = document.getElementById('currentFlag');
-    const currentLangCode = document.getElementById('currentLangCode');
-    const data = languageData[lang];
-
-    if (!data) {
-        console.error(`❌ Langue inconnue: ${lang}`);
-        return;
-    }
-
-    if (currentFlag) {
-        // ✅ SI C'EST UNE IMAGE : changer le src
-        if (currentFlag.tagName === 'IMG') {
-            currentFlag.src = data.flag;
-            currentFlag.alt = `Drapeau ${lang}`;
-            devLog(`✅ Image mise à jour: ${data.flag}`);
-        } 
-        // ✅ SI C'EST UN SPAN : changer le textContent (emoji)
-        else {
-            currentFlag.textContent = data.emoji;
-            devLog(`✅ Emoji mis à jour: ${data.emoji}`);
-        }
-    } else {
-        console.error('❌ currentFlag introuvable');
-    }
-
-    if (currentLangCode) {
-        currentLangCode.textContent = data.code;
-        devLog(`✅ Code changé: ${data.code}`);
-    } else {
-        console.error('❌ currentLangCode introuvable');
-    }
-}
-
-// ===== METTRE À JOUR LES OPTIONS =====
-function updateLanguageOptions(lang) {
-    document.querySelectorAll('.language-option').forEach(option => {
-        option.classList.remove('active');
-        if (option.dataset.lang === lang) {
-            option.classList.add('active');
-        }
-    });
-}
-
-// ===== OUVRIR/FERMER LE MENU =====
-function toggleLanguageMenu() {
-    const selector = document.querySelector('.language-selector');
-    if (selector) {
-        const isActive = selector.classList.toggle('active');
-        devLog(`📋 Menu langue: ${isActive ? 'ouvert' : 'fermé'}`);
-    }
-}
-
-function closeLanguageMenu() {
-    const selector = document.querySelector('.language-selector');
-    if (selector) {
-        selector.classList.remove('active');
-    }
-}
-
-// ===== MENU MOBILE =====
-function initMobileMenu() {
-    devLog('📱 Initialisation menu mobile...');
-
-    // ✅ Adapter aux classes de ton HTML
-    const toggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.mobile-menu');
-
-    if (!toggle || !mobileMenu) {
-        devLog('⏳ Menu mobile pas encore chargé, on réessaie...');
-        setTimeout(initMobileMenu, 500);
-        return;
-    }
-
-    devLog('✅ Éléments menu mobile trouvés');
-
-    // Toggle du menu
-    toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isActive = toggle.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        toggle.setAttribute('aria-expanded', isActive);
-        devLog(`🔄 Menu mobile ${isActive ? 'ouvert' : 'fermé'}`);
-    });
-
-    // Fermer au clic sur un lien
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            devLog('🔗 Fermeture menu après clic lien');
-            toggle.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            toggle.setAttribute('aria-expanded', 'false');
-        });
-    });
-
-    // Fermer au clic extérieur
-    document.addEventListener('click', (e) => {
-        if (!toggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-            if (toggle.classList.contains('active')) {
-                devLog('👆 Fermeture menu - clic extérieur');
-                toggle.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                toggle.setAttribute('aria-expanded', 'false');
-            }
-        }
-    });
-
-    devLog('✅ Menu mobile initialisé avec succès');
-}
-
-
-// ===== INITIALISATION AU CHARGEMENT =====
-document.addEventListener('DOMContentLoaded', () => {
-    devLog('🚀 Initialisation de la galerie...');
-
-    // Récupérer la langue sauvegardée
-    const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
-    currentLanguage = savedLang;
-    devLog(`🌍 Langue au démarrage: ${savedLang}`);
-
-    // Générer la galerie
-    generateGallery();
-
-    // Initialiser les fonctionnalités
-    initFilters();
-    initLightbox();
-    initMobileMenu();
-
-    // Attendre que le header soit chargé
-    waitForHeader();
-});
-
-// ===== ATTENDRE LE CHARGEMENT DU HEADER =====
-function waitForHeader() {
-    let attempts = 0;
-    const maxAttempts = 30; // 3 secondes max
-
-    const checkHeader = setInterval(() => {
-        attempts++;
-
-        const header = document.querySelector('header');
-        const languageToggle = document.getElementById('languageToggle');
-        const currentFlag = document.getElementById('currentFlag');
-
-        devLog(`🔍 Tentative ${attempts}: Header=${!!header}, Toggle=${!!languageToggle}, Flag=${!!currentFlag}`);
-
-        if (header && languageToggle && currentFlag) {
-            clearInterval(checkHeader);
-            devLog('✅ Header trouvé, initialisation...');
-
-            // Initialiser le sélecteur
-            initLanguageSelector();
-
-            // Appliquer la langue sauvegardée
-            updateCurrentLanguage(currentLanguage);
-            translatePage(currentLanguage);
-            updateLanguageOptions(currentLanguage);
-
-            devLog('✅ Initialisation complète');
-        } else if (attempts >= maxAttempts) {
-            clearInterval(checkHeader);
-            console.error('❌ Timeout: header non chargé');
-        }
-    }, 100);
-}
-
-// ===== INITIALISATION SÉLECTEUR DE LANGUE =====
-function initLanguageSelector() {
-    devLog('🔧 Initialisation du sélecteur...');
-
-    // Bouton toggle
-    const toggleBtn = document.getElementById('languageToggle');
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleLanguageMenu();
-        });
-        devLog('✅ Toggle initialisé');
-    } else {
-        console.error('❌ toggleBtn introuvable');
-    }
-
-    // Options de langue
-    const options = document.querySelectorAll('.language-option');
-    devLog(`📋 Options trouvées: ${options.length}`);
-
-    options.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const lang = option.dataset.lang;
-            devLog(`👆 Clic sur langue: ${lang}`);
-            changeLanguage(lang);
-        });
-    });
-
-    // Fermer au clic extérieur
-    document.addEventListener('click', (e) => {
-        const selector = document.querySelector('.language-selector');
-        if (selector && !selector.contains(e.target)) {
-            closeLanguageMenu();
-        }
-    });
-
-    devLog('✅ Sélecteur initialisé');
-}
-
-// ===== RENDRE LES FONCTIONS GLOBALES =====
-window.changeLanguage = changeLanguage;
-window.toggleLanguageMenu = toggleLanguageMenu;
 
 // =============================================
-// PROTECTION DES IMAGES
+// SECTION 5 : PROTECTION DES IMAGES
 // =============================================
 
-// Désactiver le clic droit sur les images
+// Désactiver le clic droit
 document.addEventListener('contextmenu', function(e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
@@ -972,7 +716,7 @@ document.addEventListener('contextmenu', function(e) {
     }
 });
 
-// Empêcher le glisser-déposer des images
+// Empêcher le glisser-déposer
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
         e.preventDefault();
@@ -980,7 +724,7 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-// Bloquer Ctrl+S (enregistrer)
+// Bloquer Ctrl+S
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key === 's') {
         e.preventDefault();
@@ -988,4 +732,28 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-devLog('🔒 Protection des images activée');
+// =============================================
+// SECTION 6 : SYNCHRONISATION AVEC MAIN.JS
+// =============================================
+
+// Écouter les changements de langue depuis main.js
+window.addEventListener('languageChanged', (e) => {
+    currentLanguage = e.detail.lang;
+    devLog('🌍 Langue changée:', currentLanguage);
+    generateGallery();
+});
+
+// =============================================
+// SECTION 7 : INITIALISATION
+// =============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    devLog('🎨 Initialisation de la galerie...');
+    
+    generateGallery();
+    initFilters();
+    initLightbox();
+    
+    devLog('✅ Galerie prête !');
+});
+
