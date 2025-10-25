@@ -653,8 +653,10 @@ const artworks = {
     ]
 };
 
-// ✅ EXPORT ES6 MODULE
-export default artworks;
+// ✅ Rendre accessible globalement (au lieu de export)
+window.artworks = artworks;
 
-console.log('✅ Artworks exportées (ES6):', Object.keys(artworks));
+console.log('✅ Artworks chargées:', artworks);
+
+
 
