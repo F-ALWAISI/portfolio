@@ -112,9 +112,9 @@ artist_title: "Artist & Creator",
 
 // ===== DONNÉES DES LANGUES (AVEC CHEMINS SVG) =====
 const languageData = {
-    fr: { flag: '/assets/flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
-    en: { flag: '/assets/flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
-    ar: { flag: '/assets/flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
+    fr: { flag: 'flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
+    en: { flag: 'flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
+    ar: { flag: 'flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
 };
 
 // ===== DONNÉES DES ŒUVRES =====
@@ -989,3 +989,4 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
