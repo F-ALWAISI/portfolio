@@ -1,7 +1,7 @@
 // js/galerie.js
 // Module principal pour la galerie
 // Attendu: artworks disponible à ./data/artworks.js
-import { artworks } from '.data/artworks.js';
+import { artworks } from './data/artworks.js';
 
 // -----------------------------
 // Translations (keys used in HTML data-translate attributes)
@@ -355,4 +355,5 @@ if (document.readyState === 'loading') {
   window.addEventListener('includesLoaded', init, { once: true });
   setTimeout(init, 600);
 }
+
 
