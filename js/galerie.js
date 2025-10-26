@@ -1,4 +1,3 @@
-@@ -1,766 +1,753 @@
 // ============================================
 // GALERIE.JS - Gestion de la galerie
 // ============================================
@@ -765,3 +764,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 devLog('🔒 Protection des images activée');
+
