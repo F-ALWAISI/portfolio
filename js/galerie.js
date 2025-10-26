@@ -1,3 +1,4 @@
+@@ -1,766 +1,753 @@
 // ============================================
 // GALERIE.JS - Gestion de la galerie
 // ============================================
@@ -58,6 +59,7 @@ artist_title: "Artist & Creator",
         filter_all: "All",
         filter_glass: "Glass",
         filter_tin: "Tin",
+@@ -271,14 +271,14 @@,
     },  
 };
 
@@ -77,6 +79,7 @@ function devLog(...args) {
 }
 
 // ===== VARIABLES GLOBALES =====
+@@ -287,15 +287,6 @@
 let filteredArtworks = [];
 let currentArtworkIndex = 0;
 
@@ -92,6 +95,7 @@ let startX = 0, startY = 0, translateX = 0, translateY = 0;
 // ===== GÉNÉRATION GALERIE =====
 function generateGallery() {
     const container = document.getElementById('gallery-grid');
+@@ -328,7 +319,7 @@
             </div>
             <div class="gallery-info">
                 <h3 class="gallery-title">${artwork.title}</h3>
@@ -100,6 +104,7 @@ function generateGallery() {
             </div>
         `;
         card.addEventListener('click', () => openLightbox(index));
+@@ -352,9 +343,10 @@
     });
 }
 
@@ -113,6 +118,7 @@ let startX, startY, translateX = 0, translateY = 0;
 
 // ===== REDIRECTION VERS CONTACT =====
 function redirectToContact(artworkTitle) {
+@@ -404,7 +396,7 @@
     const message = encodeURIComponent(messages[currentLang] || messages.fr);
     const subject = encodeURIComponent(subjects[currentLang] || subjects.fr);
 
@@ -121,6 +127,7 @@ function redirectToContact(artworkTitle) {
 }
 
 // ===== OUVRIR LA LIGHTBOX =====
+@@ -414,20 +406,26 @@
     currentArtworkIndex = index;
     const [key, artwork] = filteredArtworks[index];
 
@@ -148,6 +155,7 @@ function redirectToContact(artworkTitle) {
         initImageZoom(lightboxImage);
     }
 
+@@ -436,80 +434,62 @@
     if (lightboxDescription) lightboxDescription.textContent = artwork.description || '';
     if (lightboxCounter) lightboxCounter.textContent = `${index + 1} / ${filteredArtworks.length}`;
 
@@ -157,7 +165,7 @@ function redirectToContact(artworkTitle) {
     if (contactBtn) {
         contactBtn.replaceWith(contactBtn.cloneNode(true));
         const newContactBtn = document.getElementById('lightbox-contact-btn');
-        
+
         newContactBtn.onclick = (e) => {
         contactBtn.onclick = (e) => {
             e.preventDefault();
@@ -254,6 +262,7 @@ function initImageZoom(image) {
     let touchStartDistance = 0;
 
     image.addEventListener('touchstart', (e) => {
+@@ -530,10 +510,13 @@
     }, { passive: false });
 }
 
@@ -267,6 +276,7 @@ function applyZoom(image) {
     showZoomIndicator();
 }
 
+@@ -553,18 +536,22 @@
 // ===== DRAG DE L'IMAGE =====
 function startDrag(e) {
     if (currentZoom <= 1) return;
@@ -289,6 +299,7 @@ function drag(e) {
     const image = document.getElementById('lightbox-image');
     if (image) {
         image.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
+@@ -579,37 +566,20 @@
     }
 }
 
@@ -328,6 +339,7 @@ function showZoomIndicator() {
         document.body.appendChild(indicator);
     }
 
+@@ -622,10 +592,33 @@
     }, 1000);
 }
 
@@ -364,6 +376,7 @@ function navigateLightbox(direction) {
 function initLightbox() {
     devLog('🎨 Initialisation de la lightbox...');
 
+@@ -639,13 +632,13 @@
         return;
     }
 
@@ -379,6 +392,7 @@ function initLightbox() {
     prevBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         navigateLightbox(-1);
+@@ -656,12 +649,10 @@
         navigateLightbox(1);
     });
 
@@ -392,6 +406,7 @@ function initLightbox() {
         switch(e.key) {
             case 'Escape':
                 closeLightbox();
+@@ -676,84 +667,325 @@
                 break;
             case '+':
             case '=':
@@ -741,13 +756,12 @@ window.addEventListener('languageChanged', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
     devLog('🎨 Initialisation de la galerie...');
-    
+
     generateGallery();
     initFilters();
     initLightbox();
-    
+
     devLog('✅ Galerie prête !');
 });
 
 devLog('🔒 Protection des images activée');
-
