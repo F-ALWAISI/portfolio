@@ -160,7 +160,7 @@ const artworks = {
         category: "etain",
         year: "2022",
         dimensions: "30x45cm",
-        image: "images/oeuvres/etain/l'indienne traditionnelle.jpg",
+        image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
         description: "Arabesques dans les tons de bleu"
     },
     l_indienne: {
@@ -168,7 +168,7 @@ const artworks = {
         category: "etain",
         year: "2023",
         dimensions: "30x45cm",
-        image: "images/oeuvres/etain/l'indienne.jpg",
+        image: "images/oeuvres/etain/l-indienne.jpg",
         description: "Palette chaude inspirée des couchers de soleil"
     },
     la_naissance_de_Jesue: {
@@ -176,7 +176,7 @@ const artworks = {
         category: "etain",
         year: "2022",
         dimensions: "30x40cm",
-        image: "images/oeuvres/etain/la naissance de Jesue.jpg",
+        image: "images/oeuvres/etain/la-naissance-de-jesue.jpg",
     },
     masque_venitien: {
         title: "masque-venitien",
@@ -197,7 +197,7 @@ const artworks = {
         category: "etain",
         year: "2022",
         dimensions: "40x30cm",
-        image: "images/oeuvres/etain/réflexion.jpg",
+        image: "images/oeuvres/etain/reflexion.jpg",
     },
     Cerf: {
         title: "Cerf",
@@ -225,28 +225,28 @@ const artworks = {
         category: "verre",
         year: "2022",
         dimensions: "80x80cm",
-        image: "images/oeuvres/Verre/la fémenine.jpg",
+        image: "images/oeuvres/Verre/la-feminine.jpg",
     },
     la_femme_fleurisante: {
         title: "la femme fleurisante",
         category: "verre",
         year: "2023",
         dimensions: "33x45cm",
-        image: "images/oeuvres/Verre/la femme fleurisante.jpg",
+        image: "images/oeuvres/Verre/la-femme-fleurissante.jpg",
     },
     la_fleure: {
         title: "la fleure",
         category: "verre",
         year: "2022",
         dimensions: "24x54cm",
-        image: "images/oeuvres/Verre/la fleure.jpg",
+        image: "images/oeuvres/Verre/la-fleur.jpg",
     },
     la_patiente: {
         title: "la patiente",
         category: "verre",
         year: "2023",
         dimensions: "22x30cm",
-        image: "images/oeuvres/Verre/la patiente.jpg",
+        image: "images/oeuvres/Verre/la-patiente.jpg",
     },
     Gazelle: {
         title: "Gazelle",
@@ -989,4 +989,5 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
