@@ -96,9 +96,6 @@ const contactTranslations = {
     }
 };
 
-// ═══════════════════════════════════════════════════
-// FONCTION DE TRADUCTION
-// ═══════════════════════════════════════════════════
 function translateContactPage(lang) {
     const t = contactTranslations[lang];
     if (!t) {
@@ -106,20 +103,16 @@ function translateContactPage(lang) {
         return;
     }
 
-    // Hero
     setText('.hero-title', t.hero_title);
     setText('.hero-subtitle', t.hero_subtitle);
 
-    // Coordonnées
     setText('.contact-methods .section-subtitle', t.methods_title);
     setText('.method-item:nth-child(1) .method-label', t.email_label);
     setText('.method-item:nth-child(2) .method-label', t.phone_label);
 
-    // Réseaux sociaux
     setText('.social-section .section-subtitle', t.social_title);
     setText('.response-info p', t.response_time);
 
-    // Formulaire
     setText('.form-title', t.form_title);
     setText('.form-subtitle', t.form_subtitle);
     setText('label[for="prenom"]', t.firstname_label);
@@ -129,7 +122,6 @@ function translateContactPage(lang) {
     setText('label[for="sujet"]', t.subject_label);
     setText('label[for="message"]', t.message_label);
 
-    // Options du select
     const subjectSelect = document.getElementById('sujet');
     if (subjectSelect) {
         subjectSelect.options[0].text = t.subject_placeholder;
@@ -141,25 +133,17 @@ function translateContactPage(lang) {
         subjectSelect.options[6].text = t.subject_other;
     }
 
-    // Placeholder du message
     const messageField = document.getElementById('message');
     if (messageField) {
         messageField.placeholder = t.message_placeholder;
     }
 
-    // RGPD
     setText('label[for="rgpd"]', t.rgpd_label);
 
-    // Bouton submit
     const submitBtn = document.querySelector('.btn-submit span');
     if (submitBtn) submitBtn.textContent = t.submit_btn;
-
-    console.log(`✅ Contact traduit en ${lang}`);
 }
 
-// ═══════════════════════════════════════════════════
-// UTILITAIRES
-// ═══════════════════════════════════════════════════
 function setText(selector, text) {
     const element = document.querySelector(selector);
     if (element) {
@@ -167,9 +151,6 @@ function setText(selector, text) {
     }
 }
 
-// ═══════════════════════════════════════════════════
-// REMPLIR LE FORMULAIRE DEPUIS L'URL
-// ═══════════════════════════════════════════════════
 function fillFormFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const message = urlParams.get('message');
@@ -187,18 +168,14 @@ function fillFormFromURL() {
 
     const subjectField = document.getElementById('sujet');
     if (subjectField && subject) {
-        subjectField.value = subject === 'artwork' ? 'information' : subject;
+        subjectField.value = 'information';
     }
 
-    // Nettoyer l'URL
     if (message || subject) {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 }
 
-// ═══════════════════════════════════════════════════
-// COMPTEUR DE CARACTÈRES
-// ═══════════════════════════════════════════════════
 function initCharCounter() {
     const messageField = document.getElementById('message');
     const charCount = document.getElementById('charCount');
@@ -215,30 +192,6 @@ function initCharCounter() {
             }
         });
     }
-}
-
-// ═══════════════════════════════════════════════════
-// VALIDATION DES CHAMPS
-// ═══════════════════════════════════════════════════
-function validateField(field) {
-    let isValid = true;
-
-    if (field.hasAttribute('required') && !field.value.trim()) {
-        isValid = false;
-    } else if (field.type === 'email' && field.value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(field.value)) {
-            isValid = false;
-        }
-    }
-
-    if (!isValid) {
-        field.classList.add('error');
-    } else {
-        field.classList.remove('error');
-    }
-
-    return isValid;
 }
 
 function initFormValidation() {
@@ -260,25 +213,27 @@ function initFormValidation() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// MESSAGE DE CONFIRMATION/ERREUR
-// ═══════════════════════════════════════════════════
-function showFormMessage(message, type) {
-    const formMessage = document.getElementById('formMessage');
-    if (!formMessage) return;
+function validateField(field) {
+    let isValid = true;
 
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    formMessage.style.display = 'block';
+    if (field.hasAttribute('required') && !field.value.trim()) {
+        isValid = false;
+    } else if (field.type === 'email' && field.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+            isValid = false;
+        }
+    }
 
-    setTimeout(() => {
-        formMessage.style.display = 'none';
-    }, 5000);
+    if (!isValid) {
+        field.classList.add('error');
+    } else {
+        field.classList.remove('error');
+    }
+
+    return isValid;
 }
 
-// ═══════════════════════════════════════════════════
-// ENVOI DU FORMULAIRE (EMAILJS)
-// ═══════════════════════════════════════════════════
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -289,7 +244,9 @@ function initContactForm() {
         const lang = localStorage.getItem('selectedLanguage') || 'fr';
         const t = contactTranslations[lang];
 
-        // Validation des champs
+// ═══════════════════════════════════════════════════
+// VALIDATION DES CHAMPS
+// ═══════════════════════════════════════════════════
         const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
         let isValid = true;
 
@@ -311,7 +268,9 @@ function initContactForm() {
             return;
         }
 
-        // Désactiver le bouton pendant l'envoi
+        // ═══════════════════════════════════════════════════
+        // ENVOI AVEC EMAILJS
+        // ═══════════════════════════════════════════════════
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.querySelector('span').textContent;
 
@@ -325,8 +284,7 @@ function initContactForm() {
                 form
             );
 
-            console.log('✅ Email envoyé:', response);
-            showFormMessage(t.success, 'success');
+            showFormMessage(t.success || '✅ Message envoyé avec succès !', 'success');
 
             // Réinitialiser le formulaire
             form.reset();
@@ -335,7 +293,7 @@ function initContactForm() {
 
         } catch (error) {
             console.error('❌ Erreur EmailJS:', error);
-            showFormMessage(t.error_send, 'error');
+            showFormMessage(t.error_send || '❌ Erreur lors de l\'envoi. Réessayez.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.querySelector('span').textContent = originalText;
@@ -343,13 +301,60 @@ function initContactForm() {
     });
 }
 
-// ═══════════════════════════════════════════════════
-// INITIALISATION
-// ═══════════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔄 Initialisation contact.js...');
+function initFormValidation() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
 
-    // Initialiser AOS
+    const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            validateField(input);
+        });
+
+        input.addEventListener('input', () => {
+            if (input.classList.contains('error')) {
+                validateField(input);
+            }
+        });
+    });
+}
+
+function validateField(field) {
+    let isValid = true;
+
+    if (field.hasAttribute('required') && !field.value.trim()) {
+        isValid = false;
+    } else if (field.type === 'email' && field.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        field.classList.add('error');
+    } else {
+        field.classList.remove('error');
+    }
+
+    return isValid;
+}
+
+function showFormMessage(message, type) {
+    const formMessage = document.getElementById('formMessage');
+    formMessage.textContent = message;
+    formMessage.className = `form-message ${type}`;
+    formMessage.style.display = 'block';
+
+    setTimeout(() => {
+        formMessage.style.display = 'none';
+    }, 5000);
+}
+
+// ===== INITIALISATION =====
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialiser animations
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800,
@@ -358,23 +363,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Attendre le chargement de main.js
+    // Attendre que main.js charge tout
     setTimeout(() => {
         const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
         translateContactPage(savedLang);
         fillFormFromURL();
     }, 300);
 
-    // Initialiser les fonctionnalités
+    // Initialiser fonctionnalités
     initCharCounter();
     initContactForm();
     initFormValidation();
 
     // Écouter les changements de langue
     window.addEventListener('languageChanged', (e) => {
-        console.log(`🔄 Changement de langue détecté: ${e.detail.language}`);
         translateContactPage(e.detail.language);
     });
-
-    console.log('✅ Contact initialisé');
 });
+
