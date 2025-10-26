@@ -86,8 +86,47 @@
     <!-- ===== SCRIPTS ===== -->
     <script src="js/main.js"></script>
 <script type="module" src="js/galerie.js"></script>
+
+    <!-- Inclusion Header/Footer -->
+    <script>
+        // Charger le header
+        fetch('includes/header.html')
+            .then(res => res.text())
+            .then(html => {
+                const headerPlaceholder = document.getElementById('header-placeholder');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = html;
+
+                    // Charger le sélecteur de langue
+                    return fetch('includes/language-selector.html');
+                }
+            })
+            .then(res => res ? res.text() : null)
+            .then(langHtml => {
+                if (langHtml) {
+                    const langPlaceholder = document.getElementById('language-selector-placeholder');
+                    if (langPlaceholder) {
+                        langPlaceholder.innerHTML = langHtml;
+                    }
+                }
+            })
+            .catch(err => console.error('❌ Erreur header:', err));
+
+        // Charger le footer
+        fetch('includes/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                const footerPlaceholder = document.getElementById('footer-placeholder');
+                if (footerPlaceholder) {
+                    footerPlaceholder.innerHTML = html;
+                }
+            })
+            .catch(err => console.error('❌ Erreur footer:', err));
+    </script>
 </body>
 </html>
+
+
 
 
 
