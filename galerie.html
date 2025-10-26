@@ -8,125 +8,128 @@
     <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Polices latines -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Polices arabes élégantes -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- CSS -->
+    <!-- Styles (chemins uniformisés) -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/galerie.css">
     <link rel="stylesheet" href="css/arabic-fonts.css">
 </head>
-<body data-page="galerie">
+<body>
+    <!-- ===== HEADER INCLUS ===== -->
+    <div id="header-placeholder"></div>
 
-    <!-- ===== HEADER (inclus via fetch/includes/header.html) ===== -->
-<div id="header-placeholder"></div>
+    <!-- ===== CONTENU GALERIE ===== -->
+    <main>
+        <!-- SECTION HERO -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title" data-translate="gallery_title">Ma Galerie</h1>
+                <p class="hero-subtitle" data-translate="gallery_subtitle">
+                    Découvrez ma collection d'œuvres réalisées à travers différentes techniques
+                </p>
+            </div>
+        </section>
 
-<!-- ===== CONTENU PRINCIPAL ===== -->
-<main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title" data-translate="gallery_title">Ma Galerie</h1>
-            <p class="hero-subtitle" data-translate="gallery_subtitle">
-                Découvrez ma collection d'œuvres réalisées à travers différentes techniques
-            </p>
-        </div>
-    </section>
+        <!-- SECTION FILTRES -->
+        <section class="filters">
+            <div class="container">
+                <button class="filter-btn active" data-filter="all" data-translate="filter_all">Toutes</button>
+                <button class="filter-btn" data-filter="verre" data-translate="filter_glass">Verre</button>
+                <button class="filter-btn" data-filter="etain" data-translate="filter_tin">Étain</button>
+                <button class="filter-btn" data-filter="mixte" data-translate="filter_mixed">Mixte</button>
+            </div>
+        </section>
 
-    <!-- Filtres -->
-    <section class="filters" aria-label="Filtres galerie">
-        <div class="container">
-            <!-- NOTE : data-filter values must match artworks.technique keys (all | glass | tin | mixed) -->
-            <button type="button" class="filter-btn active" data-filter="all" data-translate="filter_all">Toutes</button>
-            <button type="button" class="filter-btn" data-filter="glass" data-translate="filter_glass">Verre</button>
-            <button type="button" class="filter-btn" data-filter="tin" data-translate="filter_tin">Étain</button>
-            <button type="button" class="filter-btn" data-filter="mixed" data-translate="filter_mixed">Mixte</button>
-        </div>
-    </section>
+        <!-- SECTION GALERIE -->
+        <section class="gallery">
+            <div class="container">
+                <div id="gallery-grid" class="gallery-grid">
+                    <div class="loading">Chargement des œuvres...</div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Grille galerie -->
-    <section class="gallery">
-        <div class="container">
-            <div id="gallery-grid" class="gallery-grid" aria-live="polite">
-                <div class="loading" data-translate="loading">Chargement des œuvres...</div>
+    <!-- ===== LIGHTBOX ===== -->
+    <div id="lightbox" class="lightbox">
+        <!-- ✅ BOUTONS DE CONTRÔLE -->
+        <button class="lightbox-close" aria-label="Fermer">×</button>
+        <button class="lightbox-prev" aria-label="Précédent">‹</button>
+        <button class="lightbox-next" aria-label="Suivant">›</button>
+
+        <!-- ✅ COMPTEUR -->
+        <div class="lightbox-counter">1 / 10</div>
+
+        <!-- ✅ CONTENU PRINCIPAL -->
+        <div class="lightbox-content">
+            <!-- Image principale -->
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+
+            <!-- Informations -->
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title" class="lightbox-title"></h3>
+                <p id="lightbox-details" class="lightbox-details"></p>
+                <p id="lightbox-description" class="lightbox-description"></p>
+
+                <!-- ✅ BOUTON CONTACT -->
+                <button id="lightbox-contact-btn" class="lightbox-contact-btn">
+                    <span class="btn-icon">📧</span>
+                    <span class="btn-text" data-translate="lightbox_contact_btn">Demander un devis</span>
+                </button>
             </div>
         </div>
-    </section>
-</main>
-
-<!-- ===== LIGHTBOX ===== -->
-<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
-    <button type="button" class="lightbox-close" aria-label="Fermer">×</button>
-    <button type="button" class="lightbox-prev" aria-label="Précédent">‹</button>
-    <button type="button" class="lightbox-next" aria-label="Suivant">›</button>
-
-    <div class="lightbox-counter" aria-live="polite">1 / 10</div>
-
-    <div class="lightbox-content">
-        <img id="lightbox-image" class="lightbox-image" src="" alt="" />
-        <div class="lightbox-caption">
-            <h3 id="lightbox-title" class="lightbox-title"></h3>
-            <p id="lightbox-details" class="lightbox-details"></p>
-            <p id="lightbox-description" class="lightbox-description"></p>
-
-            <button id="lightbox-contact-btn" class="lightbox-contact-btn" type="button">
-                <span class="btn-icon">📧</span>
-                <span class="btn-text" data-translate="lightbox_contact_btn">Demander un devis</span>
-            </button>
-        </div>
     </div>
-</div>
 
-<!-- ===== FOOTER (inclus via fetch/includes/footer.html) ===== -->
-<div id="footer-placeholder"></div>
+    <!-- ===== FOOTER INCLUS ===== -->
+    <div id="footer-placeholder"></div>
 
-<!-- ===== SCRIPTS ===== -->
+    <!-- ===== SCRIPTS ===== -->
 <script type="module" src="js/galerie.js"></script>
 
-<!-- Inclusion Header/Footer -->
-<script>
-    // Insert includes and dispatch event 'includesLoaded' when done.
-    (async function insertIncludes() {
-        try {
-            const headerRes = await fetch('includes/header.html');
-            const headerHtml = await headerRes.text();
-            const headerPlaceholder = document.getElementById('header-placeholder');
-            if (headerPlaceholder) headerPlaceholder.innerHTML = headerHtml;
+    <!-- Inclusion Header/Footer -->
+    <script>
+        // Charger le header
+        fetch('includes/header.html')
+            .then(res => res.text())
+            .then(html => {
+                const headerPlaceholder = document.getElementById('header-placeholder');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = html;
 
-            // language-selector.html is optional (your header already contains language selector)
-            try {
-                const langRes = await fetch('includes/language-selector.html');
-                if (langRes.ok) {
-                    const langHtml = await langRes.text();
-                    const langPlaceholder = document.getElementById('language-selector-placeholder');
-                    if (langPlaceholder) langPlaceholder.innerHTML = langHtml;
+                    // Charger le sélecteur de langue
+                    return fetch('includes/language-selector.html');
                 }
-            } catch (e) {
-                // ignore if file absent
-            }
+            })
+            .then(res => res ? res.text() : null)
+            .then(langHtml => {
+                if (langHtml) {
+                    const langPlaceholder = document.getElementById('language-selector-placeholder');
+                    if (langPlaceholder) {
+                        langPlaceholder.innerHTML = langHtml;
+                    }
+                }
+            })
+            .catch(err => console.error('❌ Erreur header:', err));
 
-            const footerRes = await fetch('includes/footer.html');
-            const footerHtml = await footerRes.text();
-            const footerPlaceholder = document.getElementById('footer-placeholder');
-            if (footerPlaceholder) footerPlaceholder.innerHTML = footerHtml;
-
-            // Notify modules that includes are loaded (galerie.js listens à cet évènement)
-            window.dispatchEvent(new Event('includesLoaded'));
-        } catch (err) {
-            console.error('❌ Erreur includes:', err);
-        }
-    })();
-</script>
+        // Charger le footer
+        fetch('includes/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                const footerPlaceholder = document.getElementById('footer-placeholder');
+                if (footerPlaceholder) {
+                    footerPlaceholder.innerHTML = html;
+                }
+            })
+            .catch(err => console.error('❌ Erreur footer:', err));
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
