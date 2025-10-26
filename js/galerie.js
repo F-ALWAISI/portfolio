@@ -396,8 +396,11 @@ Thank you!`,
     const message = encodeURIComponent(messages[currentLang] || messages.fr);
     const subject = encodeURIComponent(subjects[currentLang] || subjects.fr);
 
-    window.location.href = `/contact.html?subject=${subject}&message=${message}`;
+    // ✅ CORRECTION : Chemin relatif
+    window.location.href = `contact.html?subject=${subject}&message=${message}`;
+    //                      ↑ Pas de slash au début !
 }
+
 
 // ===== OUVRIR LA LIGHTBOX =====
 function openLightbox(index) {
@@ -989,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
