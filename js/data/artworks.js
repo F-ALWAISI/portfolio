@@ -1,598 +1,89 @@
 // js/data/artworks.js
-// Artworks data (FR / EN / AR)
-// Techniques normalisées : "tin", "mixed", "glass"
-// Filenames sans espaces/apostrophes/accents (renommer les fichiers en conséquence)
+// Export ES module contenant artworks localisés : fr / en / ar
+// Techniques normalisées : "tin" | "glass" | "mixed"
+// IMPORTANT: renommer physiquement les fichiers image pour correspondre aux chemins (minuscules, tirets, aucun accent)
 
-// Export ES module pour import { artworks } from './artworks.js'
 export const artworks = {
   fr: [
-    // ===== ÉTAIN (tin) =====
-    {
-      id: 1,
-      title: "L'indienne traditionnelle",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Portrait gravé sur étain représentant une femme indienne en tenue traditionnelle. Cette œuvre capture l'élégance et la dignité des costumes ancestraux.",
-      image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "L'indienne",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Gravure sur étain représentant une femme indienne.",
-      image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "La naissance de Jésus",
-      technique: "tin",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Scène religieuse gravée sur étain représentant la nativité.",
-      image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Masque vénitien",
-      technique: "tin",
-      year: 2023,
-      dimensions: "25×35 cm",
-      description: "Masque de carnaval vénitien gravé sur étain avec finesse.",
-      image: "images/oeuvres/etain/masque-venitien.jpg",
-      thumbnail: "images/oeuvres/etain/masque-venitien.jpg",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Nature humaine",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Réflexion artistique sur la nature humaine gravée sur étain.",
-      image: "images/oeuvres/etain/nature-humaine.jpg",
-      thumbnail: "images/oeuvres/etain/nature-humaine.jpg",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Réflexion",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Œuvre contemplative gravée sur étain.",
-      image: "images/oeuvres/etain/reflexion.jpg",
-      thumbnail: "images/oeuvres/etain/reflexion.jpg",
-      featured: true
-    },
+    { id: 1, title: "L'indienne traditionnelle", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Portrait gravé sur étain représentant une femme en costume traditionnel.", image: "images/oeuvres/etain/l-indienne-traditionnel.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg", featured: true },
+    { id: 2, title: "L'indienne", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Gravure détaillée sur étain.", image: "images/oeuvres/etain/l-indienne.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg", featured: false },
+    { id: 3, title: "La naissance", technique: "tin", year: 2023, dimensions: "35×45 cm", description: "Scène religieuse gravée sur étain.", image: "images/oeuvres/etain/la-naissance-de-jesus.jpg", thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg", featured: false },
+    { id: 4, title: "Masque vénitien", technique: "tin", year: 2023, dimensions: "25×35 cm", description: "Masque de carnaval finement gravé sur étain.", image: "images/oeuvres/etain/masque-venitien.jpg", thumbnail: "images/oeuvres/etain/thumbs/masque-venitien.jpg", featured: false },
+    { id: 5, title: "Nature humaine", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Réflexion artistique sur la nature humaine.", image: "images/oeuvres/etain/nature-humaine.jpg", thumbnail: "images/oeuvres/etain/thumbs/nature-humaine.jpg", featured: false },
 
-    // ===== MIXTE (mixed) =====
-    {
-      id: 7,
-      title: "Gravure à la bougie",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Technique mixte combinant gravure et effets de cire.",
-      image: "images/oeuvres/mixte/gravure-bougie.jpg",
-      thumbnail: "images/oeuvres/mixte/gravure-bougie.jpg",
-      featured: false
-    },
-    {
-      id: 8,
-      title: "Horloge de chevet",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "20×25 cm",
-      description: "Horloge décorative en technique mixte.",
-      image: "images/oeuvres/mixte/horloge-chevet.jpg",
-      thumbnail: "images/oeuvres/mixte/horloge-chevet.jpg",
-      featured: false
-    },
-    {
-      id: 9,
-      title: "Horloge métal",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Horloge murale réalisée en techniques mixtes sur métal.",
-      image: "images/oeuvres/mixte/horloge-metal.jpg",
-      thumbnail: "images/oeuvres/mixte/horloge-metal.jpg",
-      featured: true
-    },
+    // Mixed
+    { id: 6, title: "L'appel", technique: "mixed", year: 2023, dimensions: "40×50 cm", description: "Technique mixte mêlant peinture et gravure.", image: "images/oeuvres/mixte/l-appel.jpg", thumbnail: "images/oeuvres/mixte/thumbs/l-appel.jpg", featured: true },
+    { id: 7, title: "Homme à la colombe", technique: "mixed", year: 2023, dimensions: "30×40 cm", description: "Symbole de paix réalisé en techniques mixtes.", image: "images/oeuvres/mixte/homme-colombe.jpg", thumbnail: "images/oeuvres/mixte/thumbs/homme-colombe.jpg", featured: false },
 
-    // ===== VERRE (glass) =====
-    {
-      id: 10,
-      title: "Cerf",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 cm",
-      description: "Cerf majestueux peint sur verre avec des détails fins.",
-      image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/cerf.jpg",
-      featured: true
-    },
-    {
-      id: 11,
-      title: "Cigogne",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Cigogne élégante peinte sur verre.",
-      image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/cigogne.jpg",
-      featured: false
-    },
-    {
-      id: 12,
-      title: "Kamaria",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Portrait poétique d'une femme peint sur verre.",
-      image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/kamaria.jpg",
-      featured: false
-    },
-    {
-      id: 13,
-      title: "La féminine",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Célébration de la féminité via la peinture sur verre.",
-      image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
-      featured: true
-    },
-    {
-      id: 14,
-      title: "La femme fleurissante",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Femme entourée de fleurs, symbole de vie et de renouveau.",
-      image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      featured: false
-    },
-    {
-      id: 15,
-      title: "La fleur",
-      technique: "glass",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Composition florale délicate sur verre.",
-      image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
-      featured: false
-    },
-    {
-      id: 16,
-      title: "La patiente",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Personnage méditatif peint sur verre.",
-      image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
-      featured: false
-    },
-    {
-      id: 17,
-      title: "La patiente II",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Variation autour du thème de la patience.",
-      image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
-      featured: false
-    },
-    {
-      id: 18,
-      title: "Tête de cerf",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Représentation impressionnante de la tête d'un cerf sur verre.",
-      image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
-      featured: true
-    },
-    {
-      id: 19,
-      title: "Sage de la forêt",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 cm",
-      description: "Le sage de la forêt peint sur verre, symbole de sagesse ancestrale.",
-      image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
-      featured: false
-    }
+    // Glass
+    { id: 8, title: "La féminine", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Portrait féminin peint sur verre.", image: "images/oeuvres/verre/la-feminine.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg", featured: true },
+    { id: 9, title: "La féminine II", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Variation autour du même visage.", image: "images/oeuvres/verre/la-feminine-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-2.jpg", featured: false },
+    { id: 10, title: "Femme et masque", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Liaison entre identité et masque.", image: "images/oeuvres/verre/femme-masque.jpg", thumbnail: "images/oeuvres/verre/thumbs/femme-masque.jpg", featured: false },
+    { id: 11, title: "La gracieuse", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Personnage élégant peint sur verre.", image: "images/oeuvres/verre/la-gracieuse.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-gracieuse.jpg", featured: false },
+    { id: 12, title: "La féminine III", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Nouvelle interprétation.", image: "images/oeuvres/verre/la-feminine-3.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-3.jpg", featured: false },
+    { id: 13, title: "La féminine (petite)", technique: "glass", year: 2023, dimensions: "20×25 cm", description: "Étude au format réduit.", image: "images/oeuvres/verre/la-feminine-petite.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-petite.jpg", featured: false },
+    { id: 14, title: "La femme fleurissante", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Femme entourée de fleurs, symbole de renouveau.", image: "images/oeuvres/verre/la-femme-fleurissante.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg", featured: false },
+    { id: 15, title: "La fleur", technique: "glass", year: 2023, dimensions: "25×30 cm", description: "Composition florale délicate sur verre.", image: "images/oeuvres/verre/la-fleur.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg", featured: false },
+    { id: 16, title: "La patiente", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Personnage méditatif.", image: "images/oeuvres/verre/la-patiente.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg", featured: false },
+    { id: 17, title: "La patiente II", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Variation autour du thème de la patience.", image: "images/oeuvres/verre/la-patiente-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg", featured: false },
+    { id: 18, title: "Tête de cerf", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Tête de cerf peinte sur verre.", image: "images/oeuvres/verre/tete-cerf.jpg", thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg", featured: true },
+    { id: 19, title: "Sage de la forêt", technique: "glass", year: 2023, dimensions: "40×50 cm", description: "Le sage de la forêt.", image: "images/oeuvres/verre/sage-foret.jpg", thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg", featured: false }
   ],
 
   en: [
-    // English localizations (same technique keys)
-    {
-      id: 1,
-      title: "Traditional Indian Woman",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Engraved tin portrait of an Indian woman in traditional attire, capturing the elegance of ancestral costumes.",
-      image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "The Indian Woman",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Tin engraving representing an Indian woman.",
-      image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "The Nativity",
-      technique: "tin",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Religious scene engraved on tin representing the nativity.",
-      image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      featured: false
-    },
-    // ... (pour éviter duplication inutile, on reprend les mêmes fichiers images/ids que fr)
-    {
-      id: 4,
-      title: "Venetian Mask",
-      technique: "tin",
-      year: 2023,
-      dimensions: "25×35 cm",
-      description: "Venetian carnival mask finely engraved on tin.",
-      image: "images/oeuvres/etain/masque-venitien.jpg",
-      thumbnail: "images/oeuvres/etain/masque-venitien.jpg",
-      featured: false
-    },
-    {
-      id: 5,
-      title: "Human Nature",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Artistic reflection on human nature engraved on tin.",
-      image: "images/oeuvres/etain/nature-humaine.jpg",
-      thumbnail: "images/oeuvres/etain/nature-humaine.jpg",
-      featured: false
-    },
-    {
-      id: 6,
-      title: "Reflection",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Contemplative work engraved on tin.",
-      image: "images/oeuvres/etain/reflexion.jpg",
-      thumbnail: "images/oeuvres/etain/reflexion.jpg",
-      featured: true
-    },
+    // Same images, English texts
+    { id: 1, title: "Traditional Indian Woman", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Engraved tin portrait of a woman wearing traditional attire.", image: "images/oeuvres/etain/l-indienne-traditionnel.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg", featured: true },
+    { id: 2, title: "The Indian Woman", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Detailed tin engraving.", image: "images/oeuvres/etain/l-indienne.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg", featured: false },
+    { id: 3, title: "The Nativity", technique: "tin", year: 2023, dimensions: "35×45 cm", description: "Religious nativity scene on tin.", image: "images/oeuvres/etain/la-naissance-de-jesus.jpg", thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg", featured: false },
+    { id: 4, title: "Venetian Mask", technique: "tin", year: 2023, dimensions: "25×35 cm", description: "Venetian carnival mask engraved on tin.", image: "images/oeuvres/etain/masque-venitien.jpg", thumbnail: "images/oeuvres/etain/thumbs/masque-venitien.jpg", featured: false },
+    { id: 5, title: "Human Nature", technique: "tin", year: 2023, dimensions: "30×40 cm", description: "Artistic reflection on human nature.", image: "images/oeuvres/etain/nature-humaine.jpg", thumbnail: "images/oeuvres/etain/thumbs/nature-humaine.jpg", featured: false },
 
-    {
-      id: 7,
-      title: "Candle Engraving",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Mixed technique combining engraving and wax effects.",
-      image: "images/oeuvres/mixte/gravure-bougie.jpg",
-      thumbnail: "images/oeuvres/mixte/gravure-bougie.jpg",
-      featured: false
-    },
-    {
-      id: 8,
-      title: "Bedside Clock",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "20×25 cm",
-      description: "Decorative clock in mixed technique.",
-      image: "images/oeuvres/mixte/horloge-chevet.jpg",
-      thumbnail: "images/oeuvres/mixte/horloge-chevet.jpg",
-      featured: false
-    },
-    {
-      id: 9,
-      title: "Metal Clock",
-      technique: "mixed",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Wall clock made with mixed techniques on metal.",
-      image: "images/oeuvres/mixte/horloge-metal.jpg",
-      thumbnail: "images/oeuvres/mixte/horloge-metal.jpg",
-      featured: true
-    },
+    { id: 6, title: "The Call", technique: "mixed", year: 2023, dimensions: "40×50 cm", description: "Mixed technique blending paint and engraving.", image: "images/oeuvres/mixte/l-appel.jpg", thumbnail: "images/oeuvres/mixte/thumbs/l-appel.jpg", featured: true },
+    { id: 7, title: "Man with Dove", technique: "mixed", year: 2023, dimensions: "30×40 cm", description: "Symbol of peace using mixed media.", image: "images/oeuvres/mixte/homme-colombe.jpg", thumbnail: "images/oeuvres/mixte/thumbs/homme-colombe.jpg", featured: false },
 
-    // Glass works (EN)
-    {
-      id: 10,
-      title: "Stag",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 cm",
-      description: "Majestic stag painted on glass with fine details.",
-      image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/cerf.jpg",
-      featured: true
-    },
-    {
-      id: 11,
-      title: "Stork",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Elegant stork painted on glass.",
-      image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/cigogne.jpg",
-      featured: false
-    },
-    {
-      id: 12,
-      title: "Kamaria",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Poetic portrait of a woman painted on glass.",
-      image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/kamaria.jpg",
-      featured: false
-    },
-    {
-      id: 13,
-      title: "Femininity",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Celebration of femininity through glass painting.",
-      image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
-      featured: true
-    },
-    {
-      id: 14,
-      title: "The Flowering Woman",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Woman surrounded by flowers, a symbol of life and renewal.",
-      image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      featured: false
-    },
-    {
-      id: 15,
-      title: "The Flower",
-      technique: "glass",
-      year: 2023,
-      dimensions: "25×30 cm",
-      description: "Delicate floral composition on glass.",
-      image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
-      featured: false
-    },
-    {
-      id: 16,
-      title: "The Patient One",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Reflective character painted on glass.",
-      image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
-      featured: false
-    },
-    {
-      id: 17,
-      title: "The Patient One II",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 cm",
-      description: "Variation on the theme of patience.",
-      image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
-      featured: false
-    },
-    {
-      id: 18,
-      title: "Deer Head",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 cm",
-      description: "Impressive depiction of a deer's head on glass.",
-      image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
-      featured: true
-    },
-    {
-      id: 19,
-      title: "Forest Sage",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 cm",
-      description: "Forest sage painted on glass, symbol of ancient wisdom.",
-      image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
-      featured: false
-    }
+    { id: 8, title: "The Feminine", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Female portrait painted on glass.", image: "images/oeuvres/verre/la-feminine.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg", featured: true },
+    { id: 9, title: "The Feminine II", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Variation around a face.", image: "images/oeuvres/verre/la-feminine-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-2.jpg", featured: false },
+    { id: 10, title: "Woman and Mask", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Identity and mask connection.", image: "images/oeuvres/verre/femme-masque.jpg", thumbnail: "images/oeuvres/verre/thumbs/femme-masque.jpg", featured: false },
+    { id: 11, title: "The Graceful", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Elegant character painted on glass.", image: "images/oeuvres/verre/la-gracieuse.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-gracieuse.jpg", featured: false },
+    { id: 12, title: "The Feminine III", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "New interpretation.", image: "images/oeuvres/verre/la-feminine-3.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-3.jpg", featured: false },
+    { id: 13, title: "The Feminine (small)", technique: "glass", year: 2023, dimensions: "20×25 cm", description: "Study in reduced format.", image: "images/oeuvres/verre/la-feminine-petite.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-petite.jpg", featured: false },
+    { id: 14, title: "Blossoming Woman", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Woman surrounded by flowers, symbol of renewal.", image: "images/oeuvres/verre/la-femme-fleurissante.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg", featured: false },
+    { id: 15, title: "The Flower", technique: "glass", year: 2023, dimensions: "25×30 cm", description: "Delicate floral composition on glass.", image: "images/oeuvres/verre/la-fleur.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg", featured: false },
+    { id: 16, title: "The Patient", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Meditative figure.", image: "images/oeuvres/verre/la-patiente.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg", featured: false },
+    { id: 17, title: "The Patient II", technique: "glass", year: 2023, dimensions: "30×40 cm", description: "Variation on patience.", image: "images/oeuvres/verre/la-patiente-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg", featured: false },
+    { id: 18, title: "Deer Head", technique: "glass", year: 2023, dimensions: "35×45 cm", description: "Impressive deer head painted on glass.", image: "images/oeuvres/verre/tete-cerf.jpg", thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg", featured: true },
+    { id: 19, title: "Forest Sage", technique: "glass", year: 2023, dimensions: "40×50 cm", description: "Forest sage, symbol of ancestral wisdom.", image: "images/oeuvres/verre/sage-foret.jpg", thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg", featured: false }
   ],
 
   ar: [
-    // Arabic localizations (titles/descriptions in Arabic)
-    {
-      id: 1,
-      title: "الهنودية التقليدية",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "بورتريه محفور على القصدير يمثل امرأة هندية باللباس التقليدي.",
-      image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      featured: true
-    },
-    {
-      id: 2,
-      title: "الهنودِية",
-      technique: "tin",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "نقش على القصدير يمثل امرأة هندية.",
-      image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
-      featured: false
-    },
-    {
-      id: 3,
-      title: "ميلاد المسيح",
-      technique: "tin",
-      year: 2023,
-      dimensions: "35×45 سم",
-      description: "مشهد ديني محفور على القصدير يمثل الميلاد.",
-      image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      featured: false
-    },
-    // ... autres entrées arabe reprenant mêmes fichiers images
-    {
-      id: 10,
-      title: "الأيل",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 سم",
-      description: "أيل مهيب مرسوم على الزجاج بتفاصيل دقيقة.",
-      image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/cerf.jpg",
-      featured: true
-    },
-    {
-      id: 11,
-      title: "اللقلق",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 سم",
-      description: "لقلق أنيق مرسوم على الزجاج.",
-      image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/cigogne.jpg",
-      featured: false
-    },
-    {
-      id: 12,
-      title: "كاماريا",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "بورتريه شاعري لامرأة مرسوم على الزجاج.",
-      image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/kamaria.jpg",
-      featured: false
-    },
-    {
-      id: 13,
-      title: "الأنوثة",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "احتفاء بالأنوثة من خلال الرسم على الزجاج.",
-      image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
-      featured: true
-    },
-    {
-      id: 14,
-      title: "المرأة المزهرة",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 سم",
-      description: "امرأة محاطة بالزهور، رمز الحياة والتجدد.",
-      image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      featured: false
-    },
-    {
-      id: 15,
-      title: "الزهرة",
-      technique: "glass",
-      year: 2023,
-      dimensions: "25×30 سم",
-      description: "تركيبة زهرية رقيقة على الزجاج.",
-      image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
-      featured: false
-    },
-    {
-      id: 16,
-      title: "الصابرة",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "شخصية متأملة مرسومة على الزجاج.",
-      image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
-      featured: false
-    },
-    {
-      id: 17,
-      title: "الصابرة الثانية",
-      technique: "glass",
-      year: 2023,
-      dimensions: "30×40 سم",
-      description: "تنويع على موضوع الصبر.",
-      image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
-      featured: false
-    },
-    {
-      id: 18,
-      title: "رأس الأيل",
-      technique: "glass",
-      year: 2023,
-      dimensions: "35×45 سم",
-      description: "صورة مهيبة لرأس أيل على الزجاج.",
-      image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
-      featured: true
-    },
-    {
-      id: 19,
-      title: "حكيم الغابة",
-      technique: "glass",
-      year: 2023,
-      dimensions: "40×50 سم",
-      description: "حكيم الغابة مرسوم على الزجاج، رمز الحكمة الأزلية.",
-      image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
-      featured: false
-    }
+    // Arabic texts — same images
+    { id: 1, title: "المرأة الهندية التقليدية", technique: "tin", year: 2023, dimensions: "30×40 سم", description: "صورة منقوشة على القصدير تمثل امرأة بزي تقليدي.", image: "images/oeuvres/etain/l-indienne-traditionnel.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg", featured: true },
+    { id: 2, title: "المرأة الهندية", technique: "tin", year: 2023, dimensions: "30×40 سم", description: "نقش مفصل على القصدير.", image: "images/oeuvres/etain/l-indienne.jpg", thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg", featured: false },
+    { id: 3, title: "ميلاد المسيح", technique: "tin", year: 2023, dimensions: "35×45 سم", description: "مشهد ديني منقوش على القصدير.", image: "images/oeuvres/etain/la-naissance-de-jesus.jpg", thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg", featured: false },
+    { id: 4, title: "قناع البندقية", technique: "tin", year: 2023, dimensions: "25×35 سم", description: "قناع كرنفال منقوش على القصدير.", image: "images/oeuvres/etain/masque-venitien.jpg", thumbnail: "images/oeuvres/etain/thumbs/masque-venitien.jpg", featured: false },
+    { id: 5, title: "الطبيعة البشرية", technique: "tin", year: 2023, dimensions: "30×40 سم", description: "تأمل فني في الطبيعة البشرية.", image: "images/oeuvres/etain/nature-humaine.jpg", thumbnail: "images/oeuvres/etain/thumbs/nature-humaine.jpg", featured: false },
+
+    { id: 6, title: "الدعوة", technique: "mixed", year: 2023, dimensions: "40×50 سم", description: "تقنية مختلطة تمزج الرسم والنقش.", image: "images/oeuvres/mixte/l-appel.jpg", thumbnail: "images/oeuvres/mixte/thumbs/l-appel.jpg", featured: true },
+    { id: 7, title: "رجل مع حمامة", technique: "mixed", year: 2023, dimensions: "30×40 سم", description: "رمز السلام بتقنيات متعددة.", image: "images/oeuvres/mixte/homme-colombe.jpg", thumbnail: "images/oeuvres/mixte/thumbs/homme-colombe.jpg", featured: false },
+
+    { id: 8, title: "الأنثوية", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "صورة أنثوية مرسومة على الزجاج.", image: "images/oeuvres/verre/la-feminine.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg", featured: true },
+    { id: 9, title: "الأنثوية II", technique: "glass", year: 2023, dimensions: "35×45 سم", description: "تباين حول الوجه.", image: "images/oeuvres/verre/la-feminine-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-2.jpg", featured: false },
+    { id: 10, title: "امرأة وقناع", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "العلاقة بين الهوية والقناع.", image: "images/oeuvres/verre/femme-masque.jpg", thumbnail: "images/oeuvres/verre/thumbs/femme-masque.jpg", featured: false },
+    { id: 11, title: "الرشيقة", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "شخصية أنيقة مرسومة على الزجاج.", image: "images/oeuvres/verre/la-gracieuse.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-gracieuse.jpg", featured: false },
+    { id: 12, title: "الأنثوية III", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "تفسير جديد.", image: "images/oeuvres/verre/la-feminine-3.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-3.jpg", featured: false },
+    { id: 13, title: "الأنثوية (صغيرة)", technique: "glass", year: 2023, dimensions: "20×25 سم", description: "دراسة بحجم صغير.", image: "images/oeuvres/verre/la-feminine-petite.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-feminine-petite.jpg", featured: false },
+    { id: 14, title: "المرأة المزدهرة", technique: "glass", year: 2023, dimensions: "35×45 سم", description: "امرأة محاطة بالزهور.", image: "images/oeuvres/verre/la-femme-fleurissante.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg", featured: false },
+    { id: 15, title: "الزهرة", technique: "glass", year: 2023, dimensions: "25×30 سم", description: "تركيب زهري دقيق على الزجاج.", image: "images/oeuvres/verre/la-fleur.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg", featured: false },
+    { id: 16, title: "الصبورة", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "شخصية تأملية.", image: "images/oeuvres/verre/la-patiente.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg", featured: false },
+    { id: 17, title: "الصبورة II", technique: "glass", year: 2023, dimensions: "30×40 سم", description: "تنويع حول موضوع الصبر.", image: "images/oeuvres/verre/la-patiente-2.jpg", thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg", featured: false },
+    { id: 18, title: "رأس الغزال", technique: "glass", year: 2023, dimensions: "35×45 سم", description: "رأس غزال مرسوم على الزجاج.", image: "images/oeuvres/verre/tete-cerf.jpg", thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg", featured: true },
+    { id: 19, title: "حكيم الغابة", technique: "glass", year: 2023, dimensions: "40×50 سم", description: "حكيم الغابة رمز الحكمة.", image: "images/oeuvres/verre/sage-foret.jpg", thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg", featured: false }
   ]
 };
 
-// Compatibilité (si tu veux toujours accéder via window)
+// Also expose globally if someone doesn't import (backwards compatibility)
 if (typeof window !== 'undefined') {
   window.artworks = artworks;
 }
 
-console.log('✅ Artworks loaded (fr/en/ar) — total FR:', artworks.fr.length, 'EN:', artworks.en.length, 'AR:', artworks.ar.length);
-
-
+export default artworks;
