@@ -26,7 +26,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Gravure sur étain représentant une femme indienne.",
       image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
       featured: false
     },
     {
@@ -37,7 +37,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Scène religieuse gravée sur étain représentant la nativité.",
       image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg",
+      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
       featured: false
     },
     {
@@ -48,7 +48,7 @@ export const artworks = {
       dimensions: "25×35 cm",
       description: "Masque de carnaval vénitien gravé sur étain avec finesse.",
       image: "images/oeuvres/etain/masque-venitien.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/masque-venitien.jpg",
+      thumbnail: "images/oeuvres/etain/masque-venitien.jpg",
       featured: false
     },
     {
@@ -59,7 +59,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Réflexion artistique sur la nature humaine gravée sur étain.",
       image: "images/oeuvres/etain/nature-humaine.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/nature-humaine.jpg",
+      thumbnail: "images/oeuvres/etain/nature-humaine.jpg",
       featured: false
     },
     {
@@ -70,7 +70,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Œuvre contemplative gravée sur étain.",
       image: "images/oeuvres/etain/reflexion.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/reflexion.jpg",
+      thumbnail: "images/oeuvres/etain/reflexion.jpg",
       featured: true
     },
 
@@ -83,7 +83,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Technique mixte combinant gravure et effets de cire.",
       image: "images/oeuvres/mixte/gravure-bougie.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/gravure-bougie.jpg",
+      thumbnail: "images/oeuvres/mixte/gravure-bougie.jpg",
       featured: false
     },
     {
@@ -94,7 +94,7 @@ export const artworks = {
       dimensions: "20×25 cm",
       description: "Horloge décorative en technique mixte.",
       image: "images/oeuvres/mixte/horloge-chevet.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/horloge-chevet.jpg",
+      thumbnail: "images/oeuvres/mixte/horloge-chevet.jpg",
       featured: false
     },
     {
@@ -105,7 +105,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Horloge murale réalisée en techniques mixtes sur métal.",
       image: "images/oeuvres/mixte/horloge-metal.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/horloge-metal.jpg",
+      thumbnail: "images/oeuvres/mixte/horloge-metal.jpg",
       featured: true
     },
 
@@ -118,7 +118,7 @@ export const artworks = {
       dimensions: "40×50 cm",
       description: "Cerf majestueux peint sur verre avec des détails fins.",
       image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cerf.jpg",
+      thumbnail: "images/oeuvres/verre/cerf.jpg",
       featured: true
     },
     {
@@ -129,7 +129,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Cigogne élégante peinte sur verre.",
       image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cigogne.jpg",
+      thumbnail: "images/oeuvres/verre/cigogne.jpg",
       featured: false
     },
     {
@@ -140,7 +140,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Portrait poétique d'une femme peint sur verre.",
       image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/kamaria.jpg",
+      thumbnail: "images/oeuvres/verre/kamaria.jpg",
       featured: false
     },
     {
@@ -151,7 +151,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Célébration de la féminité via la peinture sur verre.",
       image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg",
+      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
       featured: true
     },
     {
@@ -162,7 +162,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Femme entourée de fleurs, symbole de vie et de renouveau.",
       image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg",
+      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
       featured: false
     },
     {
@@ -173,7 +173,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Composition florale délicate sur verre.",
       image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg",
+      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
       featured: false
     },
     {
@@ -184,7 +184,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Personnage méditatif peint sur verre.",
       image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
       featured: false
     },
     {
@@ -195,7 +195,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Variation autour du thème de la patience.",
       image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
       featured: false
     },
     {
@@ -206,7 +206,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Représentation impressionnante de la tête d'un cerf sur verre.",
       image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg",
+      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
       featured: true
     },
     {
@@ -217,7 +217,7 @@ export const artworks = {
       dimensions: "40×50 cm",
       description: "Le sage de la forêt peint sur verre, symbole de sagesse ancestrale.",
       image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg",
+      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
       featured: false
     }
   ],
@@ -232,7 +232,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Engraved tin portrait of an Indian woman in traditional attire, capturing the elegance of ancestral costumes.",
       image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
       featured: true
     },
     {
@@ -243,7 +243,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Tin engraving representing an Indian woman.",
       image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
       featured: false
     },
     {
@@ -254,7 +254,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Religious scene engraved on tin representing the nativity.",
       image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg",
+      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
       featured: false
     },
     // ... (pour éviter duplication inutile, on reprend les mêmes fichiers images/ids que fr)
@@ -266,7 +266,7 @@ export const artworks = {
       dimensions: "25×35 cm",
       description: "Venetian carnival mask finely engraved on tin.",
       image: "images/oeuvres/etain/masque-venitien.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/masque-venitien.jpg",
+      thumbnail: "images/oeuvres/etain/masque-venitien.jpg",
       featured: false
     },
     {
@@ -277,7 +277,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Artistic reflection on human nature engraved on tin.",
       image: "images/oeuvres/etain/nature-humaine.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/nature-humaine.jpg",
+      thumbnail: "images/oeuvres/etain/nature-humaine.jpg",
       featured: false
     },
     {
@@ -288,7 +288,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Contemplative work engraved on tin.",
       image: "images/oeuvres/etain/reflexion.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/reflexion.jpg",
+      thumbnail: "images/oeuvres/etain/reflexion.jpg",
       featured: true
     },
 
@@ -300,7 +300,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Mixed technique combining engraving and wax effects.",
       image: "images/oeuvres/mixte/gravure-bougie.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/gravure-bougie.jpg",
+      thumbnail: "images/oeuvres/mixte/gravure-bougie.jpg",
       featured: false
     },
     {
@@ -311,7 +311,7 @@ export const artworks = {
       dimensions: "20×25 cm",
       description: "Decorative clock in mixed technique.",
       image: "images/oeuvres/mixte/horloge-chevet.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/horloge-chevet.jpg",
+      thumbnail: "images/oeuvres/mixte/horloge-chevet.jpg",
       featured: false
     },
     {
@@ -322,7 +322,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Wall clock made with mixed techniques on metal.",
       image: "images/oeuvres/mixte/horloge-metal.jpg",
-      thumbnail: "images/oeuvres/mixte/thumbs/horloge-metal.jpg",
+      thumbnail: "images/oeuvres/mixte/horloge-metal.jpg",
       featured: true
     },
 
@@ -335,7 +335,7 @@ export const artworks = {
       dimensions: "40×50 cm",
       description: "Majestic stag painted on glass with fine details.",
       image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cerf.jpg",
+      thumbnail: "images/oeuvres/verre/cerf.jpg",
       featured: true
     },
     {
@@ -346,7 +346,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Elegant stork painted on glass.",
       image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cigogne.jpg",
+      thumbnail: "images/oeuvres/verre/cigogne.jpg",
       featured: false
     },
     {
@@ -357,7 +357,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Poetic portrait of a woman painted on glass.",
       image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/kamaria.jpg",
+      thumbnail: "images/oeuvres/verre/kamaria.jpg",
       featured: false
     },
     {
@@ -368,7 +368,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Celebration of femininity through glass painting.",
       image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg",
+      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
       featured: true
     },
     {
@@ -379,7 +379,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Woman surrounded by flowers, a symbol of life and renewal.",
       image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg",
+      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
       featured: false
     },
     {
@@ -390,7 +390,7 @@ export const artworks = {
       dimensions: "25×30 cm",
       description: "Delicate floral composition on glass.",
       image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg",
+      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
       featured: false
     },
     {
@@ -401,7 +401,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Reflective character painted on glass.",
       image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
       featured: false
     },
     {
@@ -412,7 +412,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Variation on the theme of patience.",
       image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
       featured: false
     },
     {
@@ -423,7 +423,7 @@ export const artworks = {
       dimensions: "35×45 cm",
       description: "Impressive depiction of a deer's head on glass.",
       image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg",
+      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
       featured: true
     },
     {
@@ -434,7 +434,7 @@ export const artworks = {
       dimensions: "40×50 cm",
       description: "Forest sage painted on glass, symbol of ancient wisdom.",
       image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg",
+      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
       featured: false
     }
   ],
@@ -449,7 +449,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "بورتريه محفور على القصدير يمثل امرأة هندية باللباس التقليدي.",
       image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
       featured: true
     },
     {
@@ -460,7 +460,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "نقش على القصدير يمثل امرأة هندية.",
       image: "images/oeuvres/etain/l-indienne.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne.jpg",
       featured: false
     },
     {
@@ -471,7 +471,7 @@ export const artworks = {
       dimensions: "35×45 سم",
       description: "مشهد ديني محفور على القصدير يمثل الميلاد.",
       image: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/la-naissance-de-jesus.jpg",
+      thumbnail: "images/oeuvres/etain/la-naissance-de-jesus.jpg",
       featured: false
     },
     // ... autres entrées arabe reprenant mêmes fichiers images
@@ -483,7 +483,7 @@ export const artworks = {
       dimensions: "40×50 سم",
       description: "أيل مهيب مرسوم على الزجاج بتفاصيل دقيقة.",
       image: "images/oeuvres/verre/cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cerf.jpg",
+      thumbnail: "images/oeuvres/verre/cerf.jpg",
       featured: true
     },
     {
@@ -494,7 +494,7 @@ export const artworks = {
       dimensions: "35×45 سم",
       description: "لقلق أنيق مرسوم على الزجاج.",
       image: "images/oeuvres/verre/cigogne.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/cigogne.jpg",
+      thumbnail: "images/oeuvres/verre/cigogne.jpg",
       featured: false
     },
     {
@@ -505,7 +505,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "بورتريه شاعري لامرأة مرسوم على الزجاج.",
       image: "images/oeuvres/verre/kamaria.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/kamaria.jpg",
+      thumbnail: "images/oeuvres/verre/kamaria.jpg",
       featured: false
     },
     {
@@ -516,7 +516,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "احتفاء بالأنوثة من خلال الرسم على الزجاج.",
       image: "images/oeuvres/verre/la-feminine.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-feminine.jpg",
+      thumbnail: "images/oeuvres/verre/la-feminine.jpg",
       featured: true
     },
     {
@@ -527,7 +527,7 @@ export const artworks = {
       dimensions: "35×45 سم",
       description: "امرأة محاطة بالزهور، رمز الحياة والتجدد.",
       image: "images/oeuvres/verre/la-femme-fleurissante.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-femme-fleurissante.jpg",
+      thumbnail: "images/oeuvres/verre/la-femme-fleurissante.jpg",
       featured: false
     },
     {
@@ -538,7 +538,7 @@ export const artworks = {
       dimensions: "25×30 سم",
       description: "تركيبة زهرية رقيقة على الزجاج.",
       image: "images/oeuvres/verre/la-fleur.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-fleur.jpg",
+      thumbnail: "images/oeuvres/verre/la-fleur.jpg",
       featured: false
     },
     {
@@ -549,7 +549,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "شخصية متأملة مرسومة على الزجاج.",
       image: "images/oeuvres/verre/la-patiente.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente.jpg",
       featured: false
     },
     {
@@ -560,7 +560,7 @@ export const artworks = {
       dimensions: "30×40 سم",
       description: "تنويع على موضوع الصبر.",
       image: "images/oeuvres/verre/la-patiente-2.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/la-patiente-2.jpg",
+      thumbnail: "images/oeuvres/verre/la-patiente-2.jpg",
       featured: false
     },
     {
@@ -571,7 +571,7 @@ export const artworks = {
       dimensions: "35×45 سم",
       description: "صورة مهيبة لرأس أيل على الزجاج.",
       image: "images/oeuvres/verre/tete-cerf.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/tete-cerf.jpg",
+      thumbnail: "images/oeuvres/verre/tete-cerf.jpg",
       featured: true
     },
     {
@@ -582,7 +582,7 @@ export const artworks = {
       dimensions: "40×50 سم",
       description: "حكيم الغابة مرسوم على الزجاج، رمز الحكمة الأزلية.",
       image: "images/oeuvres/verre/sage-foret.jpg",
-      thumbnail: "images/oeuvres/verre/thumbs/sage-foret.jpg",
+      thumbnail: "images/oeuvres/verre/sage-foret.jpg",
       featured: false
     }
   ]
@@ -594,4 +594,5 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('✅ Artworks loaded (fr/en/ar) — total FR:', artworks.fr.length, 'EN:', artworks.en.length, 'AR:', artworks.ar.length);
+
 
