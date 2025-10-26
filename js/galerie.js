@@ -11,7 +11,6 @@ const translations = {
         nav_about: "À Propos",
         nav_contact: "Contact",
         
-
 // Logo
         artist_name: "Fatema AL Waisi",
         artist_title: "Artiste & Créatrice",
@@ -20,14 +19,12 @@ const translations = {
         gallery_title: "Ma Galerie",
         gallery_subtitle: "Découvrez ma collection d'œuvres réalisées à travers différentes techniques",
         
-
         // Filtres
         filter_all: "Toutes",
         filter_glass: "Verre",
         filter_tin: "Étain",
         filter_mixed: "Divers",
         
-
         // Footer
         footer_description: "Artiste contemporaine spécialisée en peinture sur verre, gravure sur étain et techniques mixtes.",
         footer_navigation: "Navigation",
@@ -35,14 +32,12 @@ const translations = {
         footer_social: "Suivez-moi",
         footer_rights: "Tous droits réservés.",
         
-
         // Lightbox
         lightbox_technique: "Technique",
         lightbox_dimensions: "Dimensions",
         lightbox_close: "Fermer"
     },
     
-
     en: {
         // Navigation
         nav_home: "Home",
@@ -52,7 +47,6 @@ const translations = {
         nav_contact: "Contact",
         
 
-
 artist_name: "Fatema Al Waisi",
 artist_title: "Artist & Creator",
 
@@ -60,7 +54,6 @@ artist_title: "Artist & Creator",
         gallery_title: "My Gallery",
         gallery_subtitle: "Discover my collection of artworks created through various techniques",
         
-
         // Filtres
         filter_all: "All",
         filter_glass: "Glass",
@@ -115,6 +108,13 @@ artist_title: "Artist & Creator",
         lightbox_dimensions: "الأبعاد",
         lightbox_close: "إغلاق"
     }
+};
+
+// ===== DONNÉES DES LANGUES (AVEC CHEMINS SVG) =====
+const languageData = {
+    fr: { flag: '/assets/flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
+    en: { flag: '/assets/flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
+    ar: { flag: '/assets/flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
 };
 
 // ===== DONNÉES DES ŒUVRES =====
@@ -271,50 +271,21 @@ const artworks = {
     },  
 };
 
-// ═══════════════════════════════════════════════════
-// GALERIE.JS - Gestion complète de la galerie d'art
-// ═══════════════════════════════════════════════════
-// ===== IMPORTS =====
-import { artworks } from './artworks.js';
-
 // ===== CONFIGURATION DEBUG =====
-const DEBUG_MODE = true;
-const DEBUG_MODE = false; // Mettre à true pour activer les logs
 const DEBUG_MODE = false; // ✅ Mettre à true pour activer les logs de développement
 
 // Fonction de log conditionnelle
 function devLog(...args) {
-    if (DEBUG_MODE) console.log(...args);
     if (DEBUG_MODE) {
         console.log(...args);
     }
 }
-
-// ===== DONNÉES DES LANGUES =====
-const languageData = {
-    fr: { flag: 'flags/fr.svg', code: 'FR', emoji: '🇫🇷' },
-    en: { flag: 'flags/gb.svg', code: 'EN', emoji: '🇬🇧' },
-    ar: { flag: 'flags/sa.svg', code: 'AR', emoji: '🇴🇲' }
-};
 
 // ===== VARIABLES GLOBALES =====
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
 let currentFilter = 'all';
 let filteredArtworks = [];
 let currentArtworkIndex = 0;
-
-// Variables de zoom
-// ===== VARIABLES DE ZOOM =====
-let currentZoom = 1;
-let isDragging = false;
-let startX = 0, startY = 0, translateX = 0, translateY = 0;
-
-// ═══════════════════════════════════════════════════
-// GÉNÉRATION DE LA GALERIE
-// ═══════════════════════════════════════════════════
-// =============================================
-// SECTION 1 : GALERIE
-// =============================================
 
 // ===== GÉNÉRATION GALERIE =====
 function generateGallery() {
@@ -325,51 +296,32 @@ function generateGallery() {
         return;
     }
 
-    devLog('🎨 Génération galerie, filtre:', currentFilter);
     container.innerHTML = '';
 
-    // ✅ CORRECTION : Transformer l'objet artworks directement
-    const allArtworks = Object.values(artworks);
-    
-    devLog('✅ Total œuvres disponibles:', allArtworks.length);
+    // Filtrer les œuvres
+    filteredArtworks = Object.entries(artworks).filter(([key, artwork]) => {
+        return currentFilter === 'all' || artwork.category === currentFilter;
+    });
 
-    // Filtrer selon le filtre actif
-    filteredArtworks = allArtworks.filter(artwork => 
-        currentFilter === 'all' || artwork.category === currentFilter
-    );
-
-    devLog('✅ Œuvres filtrées:', filteredArtworks.length);
-
-    // Message si vide
+    // Afficher message si vide
     if (filteredArtworks.length === 0) {
-        container.innerHTML = '<div class="loading" data-translate="no_artworks">Aucune œuvre dans cette catégorie</div>';
+        container.innerHTML = '<div class="loading">Aucune œuvre dans cette catégorie</div>';
         return;
     }
 
     // Générer les cartes
-    filteredArtworks.forEach((artwork, index) => {
-        // ✅ CORRECTION : Gérer titre string ou objet
-        const title = typeof artwork.title === 'object' 
-            ? (artwork.title[currentLanguage] || artwork.title.fr)
-            : artwork.title;
-        
+    filteredArtworks.forEach(([key, artwork], index) => {
         const card = document.createElement('div');
         card.className = 'gallery-card';
         card.innerHTML = `
             <div class="gallery-image-container">
-                <img src="${artwork.image}" 
-                     alt="${title}" 
-                     class="gallery-image"
-                     loading="lazy">
+                <img src="${artwork.image}" alt="${artwork.title}" class="gallery-image">
             </div>
             <div class="gallery-info">
-                <h3 class="gallery-title">${title}</h3>
                 <h3 class="gallery-title">${artwork.title}</h3>
-                <p class="gallery-dimensions">${artwork.dimensions}</p>
                 <p class="gallery-dimensions"> ${artwork.dimensions}</p>
             </div>
         `;
-        
         card.addEventListener('click', () => openLightbox(index));
         container.appendChild(card);
     });
@@ -377,60 +329,83 @@ function generateGallery() {
     devLog(`✅ ${filteredArtworks.length} œuvres affichées`);
 }
 
-// ═══════════════════════════════════════════════════
-// SYSTÈME DE FILTRES
-// ═══════════════════════════════════════════════════
-
+// ===== FILTRES =====
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    devLog('🔧 Initialisation filtres, boutons:', filterButtons.length);
 
     filterButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            devLog('🎯 Filtre cliqué:', e.target.dataset.filter);
-            
             filterButtons.forEach(b => b.classList.remove('active'));
             e.target.classList.add('active');
-            
             currentFilter = e.target.dataset.filter;
             generateGallery();
         });
     });
 }
-// =============================================
-// SECTION 2 : LIGHTBOX
-// =============================================
+
 // ===== VARIABLES DE ZOOM =====
 let currentZoom = 1;
 let isDragging = false;
 let startX, startY, translateX = 0, translateY = 0;
 
-// ═══════════════════════════════════════════════════
-// LIGHTBOX - OUVERTURE & NAVIGATION
-// ═══════════════════════════════════════════════════
 // ===== REDIRECTION VERS CONTACT =====
 function redirectToContact(artworkTitle) {
+    const currentLang = document.documentElement.lang || 'fr';
+
+    const messages = {
+        fr: `Bonjour,
+
+Je suis intéressé(e) par l'œuvre "${artworkTitle}".
+
+Pouvez-vous me donner plus d'informations concernant :
+- La disponibilité
+- Le prix
+- Les conditions de vente
+
+Merci !`,
+
+        en: `Hello,
+
+I am interested in the artwork "${artworkTitle}".
+
+Could you provide me with more information about:
+- Availability
+- Price
+- Terms of sale
+
+Thank you!`,
+
+        ar: `مرحباً،
+
+أنا مهتم بالعمل الفني "${artworkTitle}".
+
+هل يمكنك تزويدي بمزيد من المعلومات حول:
+- التوفر
+- السعر
+- شروط البيع
+
+شكراً لك!`
+    };
+
+    const subjects = {
+        fr: `Demande d'information sur "${artworkTitle}"`,
+        en: `Inquiry about "${artworkTitle}"`,
+        ar: `استفسار عن "${artworkTitle}"`
+    };
+
     const message = encodeURIComponent(messages[currentLang] || messages.fr);
     const subject = encodeURIComponent(subjects[currentLang] || subjects.fr);
 
-function openLightbox(index) {
-    devLog('🖼️ Ouverture lightbox, index:', index);
-    window.location.href = `contact.html?subject=${subject}&message=${message}`;
     window.location.href = `/contact.html?subject=${subject}&message=${message}`;
 }
 
 // ===== OUVRIR LA LIGHTBOX =====
-    currentArtworkIndex = index;
-    const artwork = filteredArtworks[index];
+function openLightbox(index) {
+    devLog('🖼️ Ouverture lightbox, index:', index);
 
-    if (!artwork) {
-        console.error('❌ Aucune œuvre à l\'index:', index);
-        return;
-    }
+    currentArtworkIndex = index;
     const [key, artwork] = filteredArtworks[index];
 
-    const title = artwork.title[currentLanguage] || artwork.title.fr;
-    const description = artwork.description?.[currentLanguage] || artwork.description?.fr || '';
     devLog('📊 Artwork:', artwork);
 
     // Récupérer les éléments DOM
@@ -441,15 +416,12 @@ function openLightbox(index) {
     const lightboxDescription = document.getElementById('lightbox-description');
     const lightboxCounter = document.querySelector('.lightbox-counter');
 
-    // Réinitialiser le zoom
     // 🔄 Réinitialiser le zoom
     resetZoom();
 
     // Mettre à jour le contenu
     if (lightboxImage) {
         lightboxImage.src = artwork.image;
-        lightboxImage.alt = title;
-        initImageZoom(lightboxImage);
         lightboxImage.alt = artwork.title;
         devLog('✅ Image chargée:', artwork.image);
 
@@ -457,25 +429,16 @@ function openLightbox(index) {
         initImageZoom(lightboxImage);
     }
 
-    if (lightboxTitle) lightboxTitle.textContent = title;
+    if (lightboxTitle) lightboxTitle.textContent = artwork.title;
     if (lightboxDetails) lightboxDetails.textContent = `${artwork.year} • ${artwork.dimensions}`;
-    if (lightboxDescription) lightboxDescription.textContent = description;
     if (lightboxDescription) lightboxDescription.textContent = artwork.description || '';
     if (lightboxCounter) lightboxCounter.textContent = `${index + 1} / ${filteredArtworks.length}`;
 
-    // Bouton contact
-    // Gérer le bouton contact
     // ✅ GÉRER LE BOUTON CONTACT
     const contactBtn = document.getElementById('lightbox-contact-btn');
     if (contactBtn) {
-        contactBtn.replaceWith(contactBtn.cloneNode(true));
-        const newContactBtn = document.getElementById('lightbox-contact-btn');
-        
-        newContactBtn.onclick = (e) => {
         contactBtn.onclick = (e) => {
             e.preventDefault();
-            redirectToContact(title);
-            e.stopPropagation();
             devLog('📧 Redirection vers contact pour:', artwork.title);
             redirectToContact(artwork.title);
         };
@@ -493,66 +456,24 @@ function openLightbox(index) {
     }
 }
 
-// ===== FERMER LA LIGHTBOX =====
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        resetZoom();
-        devLog('❌ Lightbox fermée');
-    }
-}
-
-// ===== NAVIGATION LIGHTBOX =====
-function navigateLightbox(direction) {
-    resetZoom();
-
-    currentArtworkIndex += direction;
-
-    if (currentArtworkIndex < 0) {
-        currentArtworkIndex = filteredArtworks.length - 1;
-    } else if (currentArtworkIndex >= filteredArtworks.length) {
-        currentArtworkIndex = 0;
-    }
-
-    openLightbox(currentArtworkIndex);
-}
-
-// ═══════════════════════════════════════════════════
-// SYSTÈME DE ZOOM
-// ═══════════════════════════════════════════════════
-// =============================================
-// SECTION 3 : SYSTÈME DE ZOOM
-// =============================================
-
-// ===== INITIALISER LE ZOOM =====
 // ===== INITIALISER LE ZOOM SUR L'IMAGE =====
 function initImageZoom(image) {
     if (!image) return;
 
-    // Zoom molette
-    // ZOOM AVEC LA MOLETTE
     // 🔍 ZOOM AVEC LA MOLETTE
     image.addEventListener('wheel', (e) => {
         e.preventDefault();
 
         const delta = e.deltaY > 0 ? -0.1 : 0.1;
-        currentZoom = Math.min(Math.max(1, currentZoom + delta), 4);
         currentZoom = Math.min(Math.max(1, currentZoom + delta), 4); // Zoom entre 1x et 4x
 
         applyZoom(image);
         devLog('🔍 Zoom:', currentZoom.toFixed(1) + 'x');
     }, { passive: false });
 
-    // Double-clic
-    // DOUBLE-CLIC POUR ZOOM/DÉZOOM
     // 🖱️ DOUBLE-CLIC POUR ZOOM/DÉZOOM
     image.addEventListener('dblclick', (e) => {
         e.preventDefault();
-        currentZoom = currentZoom === 1 ? 2 : 1;
-        if (currentZoom === 1) resetZoom();
-        else applyZoom(image);
 
         if (currentZoom === 1) {
             currentZoom = 2; // Zoomer à 2x
@@ -563,15 +484,11 @@ function initImageZoom(image) {
         applyZoom(image);
     });
 
-    // Drag
-    // DRAG POUR DÉPLACER
     // 🖐️ DRAG POUR DÉPLACER L'IMAGE ZOOMÉE
     image.addEventListener('mousedown', startDrag);
     document.addEventListener('mousemove', drag);
     document.addEventListener('mouseup', stopDrag);
 
-    // Touch pinch-to-zoom
-    // SUPPORT TACTILE (pinch)
     // 📱 SUPPORT TACTILE (mobile)
     let touchStartDistance = 0;
 
@@ -598,9 +515,12 @@ function initImageZoom(image) {
 function applyZoom(image) {
     image.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
     image.style.cursor = currentZoom > 1 ? 'move' : 'zoom-in';
+
+    // Afficher un indicateur de zoom
     showZoomIndicator();
 }
 
+// ===== RÉINITIALISER LE ZOOM =====
 function resetZoom() {
     currentZoom = 1;
     translateX = 0;
@@ -611,8 +531,6 @@ function resetZoom() {
         image.style.transform = 'scale(1) translate(0, 0)';
         image.style.cursor = 'zoom-in';
     }
-    // Afficher un indicateur de zoom
-    showZoomIndicator();
 }
 
 // ===== DRAG DE L'IMAGE =====
@@ -622,7 +540,6 @@ function startDrag(e) {
     isDragging = true;
     startX = e.clientX - translateX;
     startY = e.clientY - translateY;
-    
 
     const image = document.getElementById('lightbox-image');
     if (image) image.style.cursor = 'grabbing';
@@ -632,7 +549,6 @@ function drag(e) {
     if (!isDragging || currentZoom <= 1) return;
 
     e.preventDefault();
-    
     translateX = e.clientX - startX;
     translateY = e.clientY - startY;
 
@@ -649,11 +565,7 @@ function stopDrag() {
         image.style.cursor = 'move';
     }
 }
-// Attacher les événements au document
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', stopDrag);
 
-// ===== CALCULER LA DISTANCE (pinch) =====
 // ===== CALCULER LA DISTANCE ENTRE DEUX POINTS (pinch mobile) =====
 function getDistance(touch1, touch2) {
     const dx = touch1.clientX - touch2.clientX;
@@ -661,7 +573,6 @@ function getDistance(touch1, touch2) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-// ===== INDICATEUR DE ZOOM =====
 // ===== AFFICHER UN INDICATEUR DE ZOOM =====
 function showZoomIndicator() {
     let indicator = document.querySelector('.zoom-indicator');
@@ -669,19 +580,6 @@ function showZoomIndicator() {
     if (!indicator) {
         indicator = document.createElement('div');
         indicator.className = 'zoom-indicator';
-        indicator.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            z-index: 10001;
-            display: none;
-        `;
         document.body.appendChild(indicator);
     }
 
@@ -694,12 +592,6 @@ function showZoomIndicator() {
     }, 1000);
 }
 
-// ═══════════════════════════════════════════════════
-// LIGHTBOX - INITIALISATION
-// ═══════════════════════════════════════════════════
-// =============================================
-// SECTION 4 : ÉVÉNEMENTS LIGHTBOX
-// =============================================
 // ===== FERMER LA LIGHTBOX =====
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
@@ -715,14 +607,8 @@ function closeLightbox() {
 function navigateLightbox(direction) {
     resetZoom(); // Réinitialiser le zoom lors de la navigation
 
-function initLightbox() {
-    devLog('🎨 Initialisation lightbox...');
     currentArtworkIndex += direction;
 
-    const lightbox = document.getElementById('lightbox');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const prevBtn = document.querySelector('.lightbox-prev');
-    const nextBtn = document.querySelector('.lightbox-next');
     if (currentArtworkIndex < 0) {
         currentArtworkIndex = filteredArtworks.length - 1;
     } else if (currentArtworkIndex >= filteredArtworks.length) {
@@ -736,21 +622,22 @@ function initLightbox() {
 function initLightbox() {
     devLog('🎨 Initialisation de la lightbox...');
 
+    const lightbox = document.getElementById('lightbox');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const prevBtn = document.querySelector('.lightbox-prev');
+    const nextBtn = document.querySelector('.lightbox-next');
+
     if (!lightbox || !closeBtn || !prevBtn || !nextBtn) {
-        console.error('❌ Éléments lightbox manquants');
+        console.error('❌ Éléments de lightbox manquants');
         return;
     }
 
-    // Fermeture
-    // FERMETURE
     // ✅ FERMETURE
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeLightbox();
     });
 
-    // Navigation
-    // NAVIGATION
     // ✅ NAVIGATION
     prevBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -762,13 +649,9 @@ function initLightbox() {
         navigateLightbox(1);
     });
 
-    // Clavier
-    // CLAVIER
     // ✅ CLAVIER
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
-
-        const img = document.getElementById('lightbox-image');
 
         switch(e.key) {
             case 'Escape':
@@ -793,12 +676,10 @@ function initLightbox() {
                 break;
             case '-':
             case '_':
-                if (img) {
                 // Dézoomer avec -
                 const img2 = document.getElementById('lightbox-image');
                 if (img2) {
                     currentZoom = Math.max(1, currentZoom - 0.2);
-                    applyZoom(img);
                     applyZoom(img2);
                 }
                 break;
@@ -809,8 +690,6 @@ function initLightbox() {
         }
     });
 
-    // Clic sur le fond
-    // CLIC SUR LE FOND
     // ✅ CLIC SUR LE FOND
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox && currentZoom === 1) {
@@ -818,13 +697,9 @@ function initLightbox() {
         }
     });
 
-    devLog('✅ Lightbox initialisée');
     devLog('✅ Lightbox initialisée avec zoom');
 }
 
-// ═══════════════════════════════════════════════════
-// SYSTÈME DE TRADUCTION
-// ═══════════════════════════════════════════════════
 
 // ===== FONCTION DE TRADUCTION =====
 function translatePage(lang) {
@@ -836,13 +711,6 @@ function translatePage(lang) {
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
 
-    // Appliquer les traductions (si translations existe dans main.js)
-    if (typeof window.applyTranslations === 'function') {
-        window.applyTranslations();
-    }
-
-    // Régénérer la galerie avec la nouvelle langue
-    generateGallery();
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.dataset.translate;
         if (translations[lang] && translations[lang][key]) {
@@ -894,7 +762,6 @@ function updateCurrentLanguage(lang) {
         if (currentFlag.tagName === 'IMG') {
             currentFlag.src = data.flag;
             currentFlag.alt = `Drapeau ${lang}`;
-        } else {
             devLog(`✅ Image mise à jour: ${data.flag}`);
         } 
         // ✅ SI C'EST UN SPAN : changer le textContent (emoji)
@@ -939,10 +806,6 @@ function closeLanguageMenu() {
         selector.classList.remove('active');
     }
 }
-
-// ═══════════════════════════════════════════════════
-// MENU MOBILE
-// ═══════════════════════════════════════════════════
 
 // ===== MENU MOBILE =====
 function initMobileMenu() {
@@ -992,47 +855,27 @@ function initMobileMenu() {
         }
     });
 
-    devLog('✅ Menu mobile initialisé');
     devLog('✅ Menu mobile initialisé avec succès');
 }
 
-// ═══════════════════════════════════════════════════
-// CONTACT
-// ═══════════════════════════════════════════════════
 
-function redirectToContact(artworkTitle) {
-    devLog('📧 Redirection contact pour:', artworkTitle);
 // ===== INITIALISATION AU CHARGEMENT =====
 document.addEventListener('DOMContentLoaded', () => {
     devLog('🚀 Initialisation de la galerie...');
 
-    const messages = {
-        fr: `Bonjour,\n\nJe suis intéressé(e) par l'œuvre "${artworkTitle}".\n\nPouvez-vous me donner plus d'informations concernant :\n- La disponibilité\n- Le prix\n- Les conditions de vente\n\nMerci !`,
-        en: `Hello,\n\nI am interested in the artwork "${artworkTitle}".\n\nCould you provide me with more information about:\n- Availability\n- Price\n- Terms of sale\n\nThank you!`,
-        ar: `مرحباً،\n\nأنا مهتم بالعمل الفني "${artworkTitle}".\n\nهل يمكنك تزويدي بمزيد من المعلومات حول:\n- التوفر\n- السعر\n- شروط البيع\n\nشكراً لك!`
-    };
     // Récupérer la langue sauvegardée
     const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
     currentLanguage = savedLang;
     devLog(`🌍 Langue au démarrage: ${savedLang}`);
 
-    const subjects = {
-        fr: `Demande d'information sur "${artworkTitle}"`,
-        en: `Inquiry about "${artworkTitle}"`,
-        ar: `استفسار عن "${artworkTitle}"`
-    };
     // Générer la galerie
     generateGallery();
 
-    const message = encodeURIComponent(messages[currentLanguage] || messages.fr);
-    const subject = encodeURIComponent(subjects[currentLanguage] || subjects.fr);
     // Initialiser les fonctionnalités
     initFilters();
     initLightbox();
     initMobileMenu();
 
-    window.location.href = `contact.html?subject=${subject}&message=${message}`;
-}
     // Attendre que le header soit chargé
     waitForHeader();
 });
@@ -1063,9 +906,6 @@ function waitForHeader() {
             translatePage(currentLanguage);
             updateLanguageOptions(currentLanguage);
 
-// ═══════════════════════════════════════════════════
-// INITIALISATION DU SÉLECTEUR DE LANGUE
-// ═══════════════════════════════════════════════════
             devLog('✅ Initialisation complète');
         } else if (attempts >= maxAttempts) {
             clearInterval(checkHeader);
@@ -1116,51 +956,14 @@ function initLanguageSelector() {
     devLog('✅ Sélecteur initialisé');
 }
 
-// ═══════════════════════════════════════════════════
-// ATTENDRE LE CHARGEMENT DU HEADER
-// ═══════════════════════════════════════════════════
-
-function waitForHeader() {
-    let attempts = 0;
-    const maxAttempts = 30;
-
-    const checkHeader = setInterval(() => {
-        attempts++;
-
-        const header = document.querySelector('header');
-        const languageToggle = document.getElementById('languageToggle');
-        const currentFlag = document.getElementById('currentFlag');
-
-        devLog(`🔍 Tentative ${attempts}: Header=${!!header}, Toggle=${!!languageToggle}, Flag=${!!currentFlag}`);
-
-        if (header && languageToggle && currentFlag) {
-            clearInterval(checkHeader);
-            devLog('✅ Header trouvé, initialisation...');
-
-            initLanguageSelector();
-            updateCurrentLanguage(currentLanguage);
-            translatePage(currentLanguage);
-            updateLanguageOptions(currentLanguage);
-
-            devLog('✅ Initialisation complète');
-        } else if (attempts >= maxAttempts) {
-            clearInterval(checkHeader);
-            console.error('❌ Timeout: header non chargé');
-        }
-    }, 100);
-}
 // ===== RENDRE LES FONCTIONS GLOBALES =====
 window.changeLanguage = changeLanguage;
 window.toggleLanguageMenu = toggleLanguageMenu;
 
-// ═══════════════════════════════════════════════════
 // =============================================
-// SECTION 5 : PROTECTION DES IMAGES
 // PROTECTION DES IMAGES
-// ═══════════════════════════════════════════════════
 // =============================================
 
-// Désactiver le clic droit
 // Désactiver le clic droit sur les images
 document.addEventListener('contextmenu', function(e) {
     if (e.target.tagName === 'IMG') {
@@ -1169,7 +972,6 @@ document.addEventListener('contextmenu', function(e) {
     }
 });
 
-// Empêcher le glisser-déposer
 // Empêcher le glisser-déposer des images
 document.addEventListener('dragstart', function(e) {
     if (e.target.tagName === 'IMG') {
@@ -1178,7 +980,6 @@ document.addEventListener('dragstart', function(e) {
     }
 });
 
-// Bloquer Ctrl+S
 // Bloquer Ctrl+S (enregistrer)
 document.addEventListener('keydown', function(e) {
     if (e.ctrlKey && e.key === 's') {
@@ -1188,55 +989,3 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
-// =============================================
-// SECTION 6 : SYNCHRONISATION AVEC MAIN.JS
-// =============================================
-
-// ═══════════════════════════════════════════════════
-// INITIALISATION FINALE
-// ═══════════════════════════════════════════════════
-// Écouter les changements de langue depuis main.js
-window.addEventListener('languageChanged', (e) => {
-    currentLanguage = e.detail.lang;
-    devLog('🌍 Langue changée:', currentLanguage);
-    generateGallery();
-});
-
-// =============================================
-// SECTION 7 : INITIALISATION
-// =============================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    devLog('🚀 Galerie.js - DOMContentLoaded');
-    
-    const savedLang = localStorage.getItem('selectedLanguage') || 'fr';
-    currentLanguage = savedLang;
-    devLog(`🌍 Langue au démarrage: ${savedLang}`);
-    devLog('🎨 Initialisation de la galerie...');
-
-    generateGallery();
-    initFilters();
-    initLightbox();
-    initMobileMenu();
-    waitForHeader();
-
-    devLog('✅ Galerie initialisée !');
-    devLog('✅ Galerie prête !');
-});
-
-// ===== RENDRE LES FONCTIONS GLOBALES =====
-window.changeLanguage = changeLanguage;
-window.toggleLanguageMenu = toggleLanguageMenu;
-
-
-
-
-
-
-
-
-
-
-
-devLog('🔒 Protection des images activée');
-
