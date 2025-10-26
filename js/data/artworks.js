@@ -15,7 +15,7 @@ export const artworks = {
       dimensions: "30×40 cm",
       description: "Portrait gravé sur étain représentant une femme indienne en tenue traditionnelle. Cette œuvre capture l'élégance et la dignité des costumes ancestraux.",
       image: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
-      thumbnail: "images/oeuvres/etain/thumbs/l-indienne-traditionnel.jpg",
+      thumbnail: "images/oeuvres/etain/l-indienne-traditionnel.jpg",
       featured: true
     },
     {
@@ -594,3 +594,4 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('✅ Artworks loaded (fr/en/ar) — total FR:', artworks.fr.length, 'EN:', artworks.en.length, 'AR:', artworks.ar.length);
+
