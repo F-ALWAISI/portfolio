@@ -268,7 +268,6 @@ const artworks = {
         year: "2023",
         dimensions: "35x20cm",
         image: "images/oeuvres/etain/Halloween.jpg",
-@@ -271,14 +271,14 @@
     },  
 };
 
@@ -301,7 +300,6 @@ const languageData = {
 // ===== VARIABLES GLOBALES =====
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'fr';
 let currentFilter = 'all';
-@@ -287,15 +287,6 @@
 let filteredArtworks = [];
 let currentArtworkIndex = 0;
 
@@ -363,7 +361,6 @@ function generateGallery() {
                      alt="${title}" 
                      class="gallery-image"
                      loading="lazy">
-@@ -328,7 +319,7 @@
             </div>
             <div class="gallery-info">
                 <h3 class="gallery-title">${title}</h3>
@@ -375,7 +372,6 @@ function generateGallery() {
         
         card.addEventListener('click', () => openLightbox(index));
         container.appendChild(card);
-@@ -352,9 +343,10 @@
     });
 
     devLog(`✅ ${filteredArtworks.length} œuvres affichées`);
@@ -414,7 +410,6 @@ let startX, startY, translateX = 0, translateY = 0;
 // ═══════════════════════════════════════════════════
 // ===== REDIRECTION VERS CONTACT =====
 function redirectToContact(artworkTitle) {
-@@ -404,7 +396,7 @@
     const message = encodeURIComponent(messages[currentLang] || messages.fr);
     const subject = encodeURIComponent(subjects[currentLang] || subjects.fr);
 
@@ -425,7 +420,6 @@ function openLightbox(index) {
 }
 
 // ===== OUVRIR LA LIGHTBOX =====
-@@ -414,20 +406,26 @@
     currentArtworkIndex = index;
     const artwork = filteredArtworks[index];
 
@@ -466,7 +460,6 @@ function openLightbox(index) {
     if (lightboxTitle) lightboxTitle.textContent = title;
     if (lightboxDetails) lightboxDetails.textContent = `${artwork.year} • ${artwork.dimensions}`;
     if (lightboxDescription) lightboxDescription.textContent = description;
-@@ -436,80 +434,62 @@
     if (lightboxDescription) lightboxDescription.textContent = artwork.description || '';
     if (lightboxCounter) lightboxCounter.textContent = `${index + 1} / ${filteredArtworks.length}`;
 
@@ -597,7 +590,6 @@ function initImageZoom(image) {
             touchStartDistance = touchDistance;
             applyZoom(image);
         }
-@@ -530,10 +510,13 @@
     }, { passive: false });
 }
 
@@ -623,7 +615,6 @@ function resetZoom() {
     showZoomIndicator();
 }
 
-@@ -553,18 +536,22 @@
 // ===== DRAG DE L'IMAGE =====
 function startDrag(e) {
     if (currentZoom <= 1) return;
@@ -648,7 +639,6 @@ function drag(e) {
     const image = document.getElementById('lightbox-image');
     if (image) {
         image.style.transform = `scale(${currentZoom}) translate(${translateX}px, ${translateY}px)`;
-@@ -579,37 +566,20 @@
     }
 }
 
@@ -701,7 +691,6 @@ function showZoomIndicator() {
     clearTimeout(indicator.timeout);
     indicator.timeout = setTimeout(() => {
         indicator.style.display = 'none';
-@@ -622,10 +592,33 @@
     }, 1000);
 }
 
@@ -749,7 +738,6 @@ function initLightbox() {
 
     if (!lightbox || !closeBtn || !prevBtn || !nextBtn) {
         console.error('❌ Éléments lightbox manquants');
-@@ -639,13 +632,13 @@
         return;
     }
 
@@ -771,7 +759,6 @@ function initLightbox() {
 
     nextBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-@@ -656,12 +649,10 @@
         navigateLightbox(1);
     });
 
@@ -794,7 +781,6 @@ function initLightbox() {
             case 'ArrowRight':
                 e.preventDefault();
                 navigateLightbox(1);
-@@ -676,84 +667,325 @@
                 break;
             case '+':
             case '=':
@@ -1253,3 +1239,4 @@ window.toggleLanguageMenu = toggleLanguageMenu;
 
 
 devLog('🔒 Protection des images activée');
+
