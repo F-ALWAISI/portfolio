@@ -172,7 +172,7 @@ const artworks = {
         description: "Palette chaude inspirée des couchers de soleil"
     },
     la_naissance_de_jesue: {
-        title: "la naissance de Jesue",
+        title: "la naissance de Jesus",
         category: "etain",
         year: "2022",
         dimensions: "30x40cm",
@@ -1034,6 +1034,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
