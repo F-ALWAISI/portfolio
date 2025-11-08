@@ -204,7 +204,7 @@ const artworks = {
         category: "verre",
         year: "2023",
         dimensions: "48x58cm",
-        image: "images/oeuvres/Verre/Cerf.JPG",
+        image: "images/oeuvres/Verre/Cerf.jpg",
     },
     cigogne: {
         title: "cigogne",
@@ -992,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
