@@ -220,14 +220,14 @@ const artworks = {
         dimensions: "65x95cm",
         image: "images/oeuvres/Verre/Kamaria.jpg",
     },
-    la_fémenine: {
+    la_feminine: {
         title: "la fémenine",
         category: "verre",
         year: "2022",
         dimensions: "80x80cm",
         image: "images/oeuvres/Verre/la-feminine.jpg",
     },
-    la_femme_fleurisante: {
+    la_femme_fleurissante: {
         title: "la femme fleurisante",
         category: "verre",
         year: "2023",
@@ -992,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
