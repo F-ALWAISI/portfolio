@@ -171,7 +171,7 @@ const artworks = {
         image: "images/oeuvres/etain/l-indienne.jpg",
         description: "Palette chaude inspirée des couchers de soleil"
     },
-    la_naissance_de_Jesue: {
+    la_naissance_de_jesue: {
         title: "la naissance de Jesue",
         category: "etain",
         year: "2022",
@@ -992,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
