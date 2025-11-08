@@ -269,6 +269,48 @@ const artworks = {
         dimensions: "35x20cm",
         image: "images/oeuvres/etain/Halloween.jpg",
     },  
+        l_amerindienne: {
+        title: "l'amérindienne",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/etain/l-amerindienne.jpg",
+    },  
+        taureau: {
+        title: "taureau",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/Verre/taureau.jpg",
+    },  
+        francs_suisse: {
+        title: "5 francs suisse",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/etain/francs-suisse.jpg",
+        },
+        le_pharon: {
+        title: "le pharon",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/etain/le-pharon.jpg",
+        }, 
+        pere_noel: {
+        title: "père nöel",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/etain/pere-noel.jpg",
+        }, 
+        stop_racisme: {
+        title: "stop racisme",
+        category: "etain",
+        year: "2023",
+        dimensions: "35x20cm",
+        image: "images/oeuvres/etain/stop-racisme.jpg",
+        }, 
 };
 
 // ===== CONFIGURATION DEBUG =====
@@ -992,6 +1034,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
