@@ -176,7 +176,7 @@ const artworks = {
         category: "etain",
         year: "2022",
         dimensions: "30x40cm",
-        image: "images/oeuvres/etain/la-naissance-de-jesus.JPG",
+        image: "images/oeuvres/etain/la-naissance-de-jesue.JPG",
     },
     masque_venitien: {
         title: "masque-venitien",
@@ -992,6 +992,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 devLog('🔒 Protection des images activée');
+
 
 
 
